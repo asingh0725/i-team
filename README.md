@@ -6,7 +6,7 @@ FS (stand for Food Security)
 - Mustafa Abdulkadir: Project Manager
 - Jennifer Morales: Product Designers
 - Carlos Cura: Developer
-- RyoTaro Hayashi: Developer
+- Ryotaro Hayashi: Developer
 
 ## Mission Statement
 Our goal here at Food security is to ensure that all people below the poverty line have access to a diverse range of nutritional needs in Seattle.
