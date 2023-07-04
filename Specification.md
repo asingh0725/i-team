@@ -38,6 +38,8 @@ Login page
 - Prompts users to login with their UW netID so that only UW users can access the features
 Has a forgot password button for users to reset their password
 
+- Specifically, we will use UW NetID web Service Rest API to implement this login authentication (cf. https://wiki.cac.washington.edu/display/infra/UW+NetID+Web+Service+REST+API)
+
 Page to post or view posts
 -  Once you are logged in you can go to this screen and post
 - To post you click on the buttons that direct you to upload an image, description, and location of what you are donating
