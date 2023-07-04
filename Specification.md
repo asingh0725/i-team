@@ -14,24 +14,21 @@ There are many existing solutions created by the government and the Seattle comm
 
 ## Citation
 
-Feeding America. (n.d.). Food Insecurity. Retrieved from https://www.feedingamerica.org/hunger-in-america/food-insecurity#:~:text=Food%20insecurity%20can%20cause%20serious,and%20rent%2C%20bills%2C%20and%20transportation
-City of Seattle. (n.d.). Food Insecurity. Retrieved from https://www.seattle.gov/rsji/racial-equity-research/food-insecurity
+- Feeding America. (n.d.). Food Insecurity. Retrieved from https://www.feedingamerica.org/hunger-in-america/food-insecurity#:~:text=Food%20insecurity%20can%20cause%20serious,and%20rent%2C%20bills%2C%20and%20transportation
+- City of Seattle. (n.d.). Food Insecurity. Retrieved from https://www.seattle.gov/rsji/racial-equity-research/food-insecurity
 NPR. "What SNAP Recipients Can Expect as Benefits Shrink in March." National Public Radio, 7 Mar. 2023, www.npr.org/2023/03/07/1161417967/snap-benefits-food-stamps.
-United Nations Statistics Division. (2022). Goal 2: End hunger, achieve food security and improved nutrition and promote sustainable agriculture. Retrieved from https://unstats.un.org/sdgs/report/2022/goal-02/
-USDA Food and Nutrition Service. (n.d.). SNAP facts. Retrieved from https://www.fns.usda.gov/snap/facts#:~:text=SNAP%20benefits%20cannot%20be%20used,Vitamins%20and%20medicines
+- United Nations Statistics Division. (2022). Goal 2: End hunger, achieve food security and improved nutrition and promote sustainable agriculture. Retrieved from https://unstats.un.org/sdgs/report/2022/goal-02/
+- USDA Food and Nutrition Service. (n.d.). SNAP facts. Retrieved from https://www.fns.usda.gov/snap/facts#:~:text=SNAP%20benefits%20cannot%20be%20used,Vitamins%20and%20medicines
 Solution Summary
-Share-A-Bite is a platform that enables clubs and organizations to share information about their surplus food with hungry students at the University of Washington Seattle. By facilitating this exchange, Share-A-Bite not only helps address food insecurity among students but also contributes to the reduction of food waste.
 
 ## Specifications
-
+Share-A-Bite is a platform that enables clubs and organizations to share information about their surplus food with hungry students at the University of Washington Seattle. By facilitating this exchange, Share-A-Bite not only helps address food insecurity among students but also contributes to the reduction of food waste.
 
 ## Interaction Details
-Full credit for a thorough list of the solution's screens, interactions, algorithmic functions, and error states. It should be organized, well-written, and easy to understand.
 
-## Solution Screens
+### Solution Screens
 This website is to help tackle the problem of food insecurity at UW by making it easier for people to donate food on campus. All people have to do is log into the website, take upload an image of the food items being donated, and write a description of the items being donated, along with the location of it so that other students can find it and pick it up. There will only be a 24-hour limit to pick up the food after someone posts about it
 
-## Interaction details
 ### Landing page
 -  Has a welcome message along with the name of our Brand. The top right corner on the nav bar includes buttons that link to the homepage (that you already are on), the About page, and the log-in page for users to log in and proceed
 
