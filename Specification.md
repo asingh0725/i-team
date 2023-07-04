@@ -23,14 +23,12 @@ Solution Summary
 
 ## Specifications
 Share-A-Bite is a platform that enables clubs and organizations to share information about their surplus food with hungry students at the University of Washington Seattle. By facilitating this exchange, Share-A-Bite not only helps address food insecurity among students but also contributes to the reduction of food waste.
-
 ## Interaction Details
-
 ### Solution Screens
 This website is to help tackle the problem of food insecurity at UW by making it easier for people to donate food on campus. All people have to do is log into the website, take upload an image of the food items being donated, and write a description of the items being donated, along with the location of it so that other students can find it and pick it up. There will only be a 24-hour limit to pick up the food after someone posts about it
 
 ### Landing page
--  Has a welcome message along with the name of our Brand. The top right corner on the nav bar includes buttons that link to the homepage (that you already are on), the About page, and the log-in page for users to log in and proceed
+Has a welcome message along with the name of our Brand. The top right corner on the nav bar includes buttons that link to the homepage (that you already are on), the About page, and the log-in page for users to log in and proceed
 
 ### Login page
 - Prompts users to login with their UW netID so that only UW users can access the features
@@ -41,8 +39,9 @@ This website is to help tackle the problem of food insecurity at UW by making it
 -  Once you are logged in you can go to this screen and post
 - To post you click on the buttons that direct you to upload an image, description, and location of what you are donating
 - Once you post your donation media, your media will appear at the top of a viewers screen
-A drop-down menu
-- This drop-down menu is available for users as an option for when they are posting. It provides a list of designated locations for you to drop your food off  
+
+### A drop-down menu
+This drop-down menu is available for users as an option for when they are posting. It provides a list of designated locations for you to drop your food off  
 
 ### Algorithmic functions
 A notification system to inform users about new food postings and messages
