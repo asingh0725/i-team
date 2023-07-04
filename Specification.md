@@ -25,14 +25,14 @@ Share-A-Bite is a platform that enables clubs and organizations to share informa
 **Specifications**
 
 
-**Interaction Details (4 points)**. Full credit for a thorough list of the solution's screens, interactions, algorithmic functions, error states. It should be organized, well written, and easy to understand.
+**Interaction Details (4 points)**. Full credit for a thorough list of the solution's screens, interactions, algorithmic functions, and error states. It should be organized, well-written, and easy to understand.
 
 **Solution Screens**
- This website is to help tackle the problem of food insecurity at UW by making it easier for people to donate food on campus. All people have to do is log into the website, take upload an image of the food items being donated, write a description of the items being donated, along with the location of it so that other students can find it and pick it up. There will only be a 24 hour limit to pick up the food after someone posts about it
+ This website is to help tackle the problem of food insecurity at UW by making it easier for people to donate food on campus. All people have to do is log into the website, take upload an image of the food items being donated, and write a description of the items being donated, along with the location of it so that other students can find it and pick it up. There will only be a 24-hour limit to pick up the food after someone posts about it
 
 **Interaction details**
 Landing page
--  Has a welcome message along with the name of our Brand. In the top right corner on the nav bar includes buttons that link to the homepage (that you already are on), the about page, and the log in page for users to login and proceed
+-  Has a welcome message along with the name of our Brand. The top right corner on the nav bar includes buttons that link to the homepage (that you already are on), the About page, and the log-in page for users to log in and proceed
 
 Login page
 - Prompts users to login with their UW netID so that only UW users can access the features
@@ -42,15 +42,15 @@ Page to post or view posts
 -  Once you are logged in you can go to this screen and post
 - To post you click on the buttons that direct you to upload an image, description, and location of what you are donating
 - Once you post your donation media, your media will appear at the top of a viewers screen
-A drop down menu
-- This drop down menu is available for users as an option for when they are posting. It provides a list of designated locations for you to drop your food off  
+A drop-down menu
+- This drop-down menu is available for users as an option for when they are posting. It provides a list of designated locations for you to drop your food off  
 
 **Algorithmic functions**
 A notification system to inform users about new food postings and messages
 
 User profile
-There is a button on the navbar that shows the users profile, and the profile page can be accessed by clicking this button. Once on the profile page there will be a button to “edit your profile” so that you can add a biography about yourself
-You can also enter in a profile picture
+There is a button on the navbar that shows the user's profile, and the profile page can be accessed by clicking this button. Once on the profile page there will be a button to “edit your profile” so that you can add a biography about yourself
+You can also enter a profile picture
 
 **Error states**
 If you are missing either an image, description, or location, you will not be able to post and an error will show you which component you are missing
