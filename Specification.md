@@ -1,5 +1,5 @@
-Problem
-The Scope
+Problem The Scope
+
 In today’s society, the number of people experiencing hunger and food insecurity has been increasing even before the COVID-19 pandemic (United Nations Statistics Division, 2022). More specifically, food insecurity has taken a significant toll on the City of Seattle. According to the City of Seattle, Black, and Hispanic/Latinx households are twice as likely to experience food insecurity (26.6-32.4% between 2018-2020) than white households. In addition, Southeast Seattle households have high rates of food insecurity. The average rate for Southeast Seattle households between 2018 - 2020 was 26.5% (City of Seattle, n.d). 
 
 The impact on the effected people 
@@ -20,6 +20,7 @@ United Nations Statistics Division. (2022). Goal 2: End hunger, achieve food sec
 USDA Food and Nutrition Service. (n.d.). SNAP facts. Retrieved from https://www.fns.usda.gov/snap/facts#:~:text=SNAP%20benefits%20cannot%20be%20used,Vitamins%20and%20medicines
 Solution Summary
 Share-A-Bite is a platform that enables clubs and organizations to share information about their surplus food with hungry students at the University of Washington Seattle. By facilitating this exchange, Share-A-Bite not only helps address food insecurity among students but also contributes to the reduction of food waste.
+
 Specifications
 
 
