@@ -12,7 +12,8 @@ Food insecurity can be caused due to a variety of factors such as systemic issue
 Existing Solutions 
 There are many existing solutions created by the government and the Seattle community. The government offers SNAP benefits. Although it’s great that the government issues money to spend on food, individuals can not purchase hot foods or any food that will be eaten in the store (USDA Food and Nutrition Service, n.d). This creates a barrier because not everyone can access an equipped kitchen to cook a hot meal. Farestart is a program in Seattle that transforms lives, disrupts poverty, and nourishes communities through food, life skills, and job training (City of Seattle, n.d). The effectiveness of this program in addressing food insecurity may be limited as it may not be accessible to all people due to transportation barriers, preventing them from receiving a meal.
 
-Citation 
+**Citation**
+
 Feeding America. (n.d.). Food Insecurity. Retrieved from https://www.feedingamerica.org/hunger-in-america/food-insecurity#:~:text=Food%20insecurity%20can%20cause%20serious,and%20rent%2C%20bills%2C%20and%20transportation
 City of Seattle. (n.d.). Food Insecurity. Retrieved from https://www.seattle.gov/rsji/racial-equity-research/food-insecurity
 NPR. "What SNAP Recipients Can Expect as Benefits Shrink in March." National Public Radio, 7 Mar. 2023, www.npr.org/2023/03/07/1161417967/snap-benefits-food-stamps.
@@ -21,20 +22,20 @@ USDA Food and Nutrition Service. (n.d.). SNAP facts. Retrieved from https://www.
 Solution Summary
 Share-A-Bite is a platform that enables clubs and organizations to share information about their surplus food with hungry students at the University of Washington Seattle. By facilitating this exchange, Share-A-Bite not only helps address food insecurity among students but also contributes to the reduction of food waste.
 
-Specifications
+**Specifications**
 
 
-Interaction Details (4 points). Full credit for a thorough list of the solution's screens, interactions, algorithmic functions, error states. It should be organized, well written, and easy to understand.
+**Interaction Details (4 points)**. Full credit for a thorough list of the solution's screens, interactions, algorithmic functions, error states. It should be organized, well written, and easy to understand.
 
-Solution Screens
+**Solution Screens**
  This website is to help tackle the problem of food insecurity at UW by making it easier for people to donate food on campus. All people have to do is log into the website, take upload an image of the food items being donated, write a description of the items being donated, along with the location of it so that other students can find it and pick it up. There will only be a 24 hour limit to pick up the food after someone posts about it
 
-Interaction details
+**Interaction details**
 Landing page
 -  Has a welcome message along with the name of our Brand. In the top right corner on the nav bar includes buttons that link to the homepage (that you already are on), the about page, and the log in page for users to login and proceed
 
 Login page
-Prompts users to login with their UW netID so that only UW users can access the features
+- Prompts users to login with their UW netID so that only UW users can access the features
 Has a forgot password button for users to reset their password
 
 Page to post or view posts
@@ -42,19 +43,21 @@ Page to post or view posts
 - To post you click on the buttons that direct you to upload an image, description, and location of what you are donating
 - Once you post your donation media, your media will appear at the top of a viewers screen
 A drop down menu
-This drop down menu is available for users as an option for when they are posting. It provides a list of designated locations for you to drop your food off  
+- This drop down menu is available for users as an option for when they are posting. It provides a list of designated locations for you to drop your food off  
 
-Algorithmic functions
+**Algorithmic functions**
 A notification system to inform users about new food postings and messages
 
 User profile
 There is a button on the navbar that shows the users profile, and the profile page can be accessed by clicking this button. Once on the profile page there will be a button to “edit your profile” so that you can add a biography about yourself
 You can also enter in a profile picture
-Error states
+
+**Error states**
 If you are missing either an image, description, or location, you will not be able to post and an error will show you which component you are missing
 If you are not using a uw email, you cannot log in. An error message will occur that notifies you to use a UW email address
 
 
-Figma File
+**Figma File**
+
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FiTHHIEzmRABeaqd0RHnPOF%2FINFO-442%3Ftype%3Ddesign%26node-id%3D0%253A1%26mode%3Ddesign%26t%3Dbco3hD2xoxM77pNc-1" allowfullscreen></iframe>
 
