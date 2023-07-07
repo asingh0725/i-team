@@ -5,7 +5,7 @@ FS (stand for Food Security)
 ## Team Members
 - Mustafa Abdulkadir: Project Manager
 - Jennifer Morales: Product Designers
-- Carlos Cura: Developer
+- Aviraj Singh: Developer
 - Ryotaro Hayashi: Developer
 
 ## Mission Statement
