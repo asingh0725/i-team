@@ -1,6 +1,6 @@
-#Phase 4: Requirements
+# Phase 4: Requirements
 
-##Create Post Page:
+## Create Post Page:
 
 - CP.1: The system must provide a 'Create Post' page where users can initiate a new post.
 - CP.2: The 'Create Post' page must have a mechanism for users to upload an image or multiple images. This action is mandatory for post-creation.
@@ -11,7 +11,7 @@
 - CP.7: The 'Create Post' page must have a green 'Post' button which becomes active only when all mandatory fields are filled and valid.
 - CP.8: Upon successful post creation, the system must direct the user to the 'Feed' page.
 
-##Feed Page:
+## Feed Page:
 
 - F.1: The system must provide a 'Feed' page where users can view all posts.
 - F.2: Posts should be displayed vertically in the center of the 'Feed' page.
