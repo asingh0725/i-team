@@ -115,3 +115,14 @@
 **F.2: Vertical Post Display:** Posts should be displayed vertically in the center of the 'Feed' page.
 
 **F.3: User Avatar:** Each post must display an
+
+# About Us
+
+**A.1: Access for All Users:** It does not matter if users are logged in or not, they will have access to the “About” page.
+
+**A.2: Title:** The "About" page must display "About Us" at the middle top of the body.
+
+**A.3: Why Share-A-Bite? Description:** The “About” page must display the paragraph that describes the reason why we created this app underneath the headline of “Why Share-A-Bite?”
+
+**A.4: How to Use the App:** The “About” page must display the paragraph that describes how users can use this app by breaking it down into four steps and explaining them underneath the headline of “How do I use it?”.
+
