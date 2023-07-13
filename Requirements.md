@@ -40,9 +40,9 @@
 
 # Log In
 
-**LI.1: Log In Button:** On click of the “log in” button on the nav bar, users must be prompted to a new page where they can log in with their UW NetID.
+**LI.1: Log In Button:** On click of the "Log-in" button on the nav bar, users must be prompted to a new page where they can log in with their UW NetID.
 
-**LI.2: Log In Prompt:** On click of the “click here to login” button, users must be prompted to a login screen where they can log in with their UW NetID.
+**LI.2: Log In Prompt:** On click of the "click here to login" button, users must be prompted to a login screen where they can log in with their UW NetID.
 
 **LI.3: Login Screen:** The login screen will be the same as all UW-related things that ask for your UW NetID.
 
@@ -50,19 +50,19 @@
 
 # Login Error
 
-**LE.1: Login Prompt:** Once users click on the “log in” button, then users will be prompted to log in with their UW NetID.
+**LE.1: Login Prompt:** Once users click on the "Log-in" button, then users will be prompted to log in with their UW NetID.
 
 **LE.2: Login Screen:** The screen will be the same as all UW-related things that ask for your UW NetID.
 
 **LE.3: Navigation Bar:** Logo on the far right, home, about page, log-in buttons.
 
-**LE.4: Error Message:** If the user enters the wrong login information or uses a non-UW email, the sign-in process doesn’t render when clicked. It will give users an error message below the Washington watermark that has a purple “W” over the login text box where you enter the email/NetID and password information. This error will say “Please sign in with your UW NetID.”
+**LE.4: Error Message:** If the user enters the wrong login information or uses a non-UW email, the sign-in process doesn’t render when clicked. It will give users an error message below the Washington watermark that has a purple “W” over the login text box where you enter the email/NetID and password information. This error will say "Please sign in with your UW NetID".
 
 # Post Food Error: Missing Location
 
 **Pl.1: Navigation Bar:** Logo on the far right, home, create post, and about buttons.
 
-**Pl.2: Create Post Prompt:** On click of “create post,” it prompts users to create a post which requires adding location, photo, caption.
+**Pl.2: Create Post Prompt:** On click of "create post", it prompts users to create a post which requires adding location, photo, caption.
 
 **Pl.3: Location Box:** Under the location button, includes a box with a button that prompts users to upload their image on click.
 
@@ -92,29 +92,35 @@
 
 # Post Food
 
-**CP.1: Create Post Page:** The system must provide a 'Create Post' page where users can initiate a new post.
+**CP.1: Create Post Page:** The system must provide a "Create Post" page where users can initiate a new post.
 
-**CP.2: Image Upload:** The 'Create Post' page must have a mechanism for users to upload an image or multiple images. This action is mandatory for post-creation.
+**CP.2: Image Upload:** The "Create Post" page must have a mechanism for users to upload an image or multiple images. This action is mandatory for post-creation.
 
 **CP.3: Image Validation:** The system should verify the validity of the uploaded image file(s) before accepting the upload.
 
-**CP.4: Add Location:** The 'Create Post' page must provide an 'Add Location' option that triggers an input field for users to add a location to their post. This field is mandatory.
+**CP.4: Add Location:** The "Create Post" page must provide an "Add Location" option that triggers an input field for users to add a location to their post. This field is mandatory.
 
-**CP.5: Include Caption:** The 'Create Post' page must provide an 'Include Caption' option that triggers a text box for users to add a caption to their post. The field is mandatory.
+**CP.5: Include Caption:** The "Create Post" page must provide an "Include Caption" option that triggers a text box for users to add a caption to their post. The field is mandatory.
 
 **CP.6: Error Handling:** The system should display an error message when a mandatory field is not filled or invalid.
 
-**CP.7: Post Button:** The 'Create Post' page must have a green 'Post' button which becomes active only when all mandatory fields are filled and valid.
+**CP.7: Post Button:** The "Create Post" page must have a green "Post" button which becomes active only when all mandatory fields are filled and valid.
 
-**CP.8: Successful Post Creation:** Upon successful post creation, the system must direct the user to the 'Feed' page.
+**CP.8: Successful Post Creation:** Upon successful post creation, the system must direct the user to the "Feed" page.
 
 # Feed
 
-**F.1: Feed Page:** The system must provide a 'Feed' page where users can view all posts.
+**F.1: Feed Page:** The system must provide a "Feed" page where users can view all posts.
 
-**F.2: Vertical Post Display:** Posts should be displayed vertically in the center of the 'Feed' page.
+**F.2: Vertical Post Display:** Posts should be displayed vertically in the center of the "Feed" page.
 
-**F.3: User Avatar:** Each post must display an
+**F.3: User Avatar:** Each post must display an image of the avatar of the post creator at the top left of the post. This avatar must be fetched from the user's profile.
+
+**F.4: Display the location pin** Each post must display an icon of a location pin and the location of the post to the right of the avatar.
+
+**F.5: Display the food images/captions with each post** Each post must display the uploaded image(s) and the caption below the image.
+
+**F.6: Scrolling feature** The system must provide a scrolling feature, allowing users to browse multiple posts on the “Feed” page.
 
 # About Us
 
@@ -122,7 +128,7 @@
 
 **A.2: Title:** The "About" page must display "About Us" at the middle top of the body.
 
-**A.3: Why Share-A-Bite? Description:** The “About” page must display the paragraph that describes the reason why we created this app underneath the headline of “Why Share-A-Bite?”
+**A.3: Why Share-A-Bite? Description:** The “About” page must display the paragraph that describes the reason why we created this app underneath the headline of “Why Share-A-Bite?”.
 
 **A.4: How to Use the App:** The “About” page must display the paragraph that describes how users can use this app by breaking it down into four steps and explaining them underneath the headline of “How do I use it?”.
 
