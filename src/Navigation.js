@@ -5,7 +5,7 @@ export function NavBar() {
     return (
         <nav>
             <div className="nav-left">
-            <span aria-label="Home"><NavLink to="/home"><img src="img/icon.png" alt="logo"></img></NavLink></span>
+            <span aria-label="Home"><NavLink to="/home"><img src="img/header_icon.png" alt="logo"></img></NavLink></span>
             <a href="index.html"></a>
             </div>
             <div className="nav_right">
