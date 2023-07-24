@@ -1,22 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './Navigation.css'; // Assuming you have a separate CSS file for styling
-import logo from './img_header.png'; // Assuming you placed your image in the same folder
+import { NavLink } from 'react-router-dom';
 
-const NavBar = () => {
+export function NavBar() {
     return (
-        <nav className="navbar">
-            <div className="navbar__logo">
-                <img src={logo} alt="Logo" />
-                <span>SHARE-A-BITE</span>
+        <nav>
+            <div className="nav-left">
+            <span aria-label="Home"><NavLink to="/home"><img src="img/icon.png" alt="logo"></img></NavLink></span>
+            <a href="index.html"></a>
             </div>
-            <div className="navbar__links">
-                <Link to="/">Home</Link>
-                <Link to="/create-post">Create Post</Link>
-                <Link to="/about">About</Link>
+
+            <div className="nav_right">
+                <NavLink to="/home">Home</NavLink>
+                <NavLink to="/create-post">Create Post</NavLink>
+                <NavLink to="/about">About</NavLink>
             </div>
         </nav>
     );
 }
-
-export default NavBar;
