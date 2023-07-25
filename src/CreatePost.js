@@ -76,6 +76,15 @@ function CreatePost() {
           </Button>
         </Flex>
       </Card>
+      <TextField
+        descriptiveText=""
+        outline
+        placeholder="write a caption.."
+        label=""
+        errorMessage=""
+        borderRadius={tokens.radii.large}
+        isRequired={true}
+      />
     </Flex>
   );
 }
