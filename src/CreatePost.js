@@ -21,25 +21,40 @@ function CreatePost() {
 
   return (
     <Flex
-      direction="column"
-      justifyContent="flex-start"
+      direction="row"
+      justifyContent="center"
       alignItems="center"
-      alignContent="center"
-      wrap="nowrap"
-      gap="2rem"
-      padding={"3rem"}
+      width={"100%"}
+      style={{ height: "100vh" }}
     >
-      <Flex direction={"row"} alignItems={"center"}>
-        <FaLocationDot size={24}></FaLocationDot>
-        <SelectField
-          label=""
-          descriptiveText=""
-          borderRadius={tokens.radii.large}
-          placeholder="Select Pick-up location"
-          isRequired={true}
+      <Flex
+        direction="column"
+        justifyContent="flex-start"
+        alignItems="center"
+        alignContent="center"
+        wrap="nowrap"
+        gap="2rem"
+        padding={"3rem"}
+        width={"50%"}
+      >
+        <Flex
+          direction={"row"}
+          justifyContent={"flex-start"}
+          alignContent="center"
+          alignItems={"center"}
+          width={"100%"}
         >
-          {locationOption}
-        </SelectField>
+          <FaLocationDot size={24}></FaLocationDot>
+          <SelectField
+            label=""
+            descriptiveText=""
+            borderRadius={tokens.radii.large}
+            placeholder="Select Pick-up location"
+            isRequired={true}
+          >
+            {locationOption}
+          </SelectField>
+        </Flex>
       </Flex>
     </Flex>
   );
