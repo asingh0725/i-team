@@ -35,56 +35,76 @@ function CreatePost() {
 
   return (
     <Flex
-      direction="column"
-      justifyContent="flex-start"
+      direction="row"
+      justifyContent="center"
       alignItems="center"
-      alignContent="center"
-      wrap="nowrap"
-      gap="2rem"
-      padding={"3rem"}
+      width={"100%"}
+      style={{ height: "100vh" }}
     >
-      <Flex direction={"row"} alignItems={"center"}>
-        <FaLocationDot size={24}></FaLocationDot>
-        <SelectField
-          label=""
-          descriptiveText=""
-          borderRadius={tokens.radii.large}
-          placeholder="Select Pick-up location"
-          isRequired={true}
+      <Flex
+        direction="column"
+        justifyContent="flex-start"
+        alignItems="center"
+        alignContent="center"
+        wrap="nowrap"
+        gap="2rem"
+        padding={"3rem"}
+        width={"50%"}
+      >
+        <Flex
+          direction={"row"}
+          justifyContent={"center"}
+          alignContent="center"
+          alignItems={"center"}
+          width={"100%"}
         >
-          {locationOption}
-        </SelectField>
-      </Flex>
-      <Card variation="outlined" borderRadius={tokens.radii.large}>
-        <Flex direction={"column"} alignItems={"center"}>
-          <Image src={initialImage} />
-          <input
-            type="file"
-            ref={fileInput}
-            style={{ display: "none" }}
-            onChange={handleFileChange}
-            accept="image/*"
-            multiple
-          />
-          <Button
-            variation="primary"
-            size="large"
+          <FaLocationDot size={24}></FaLocationDot>
+          <SelectField
+            label=""
+            descriptiveText=""
             borderRadius={tokens.radii.large}
-            onClick={handleUploadClick}
+            placeholder="Select Pick-up location"
+            isRequired={true}
           >
-            Upload now
-          </Button>
+            {locationOption}
+          </SelectField>
         </Flex>
-      </Card>
-      <TextField
-        descriptiveText=""
-        outline
-        placeholder="write a caption.."
-        label=""
-        errorMessage=""
-        borderRadius={tokens.radii.large}
-        isRequired={true}
-      />
+        <Card
+          variation="outlined"
+          borderRadius={tokens.radii.large}
+          width={"100%"}
+        >
+          <Flex direction={"column"} alignItems={"center"} width={"100%"}>
+            <Image src={initialImage} />
+            <input
+              type="file"
+              ref={fileInput}
+              style={{ display: "none" }}
+              onChange={handleFileChange}
+              accept="image/*"
+              multiple
+            />
+            <Button
+              variation="primary"
+              size="large"
+              borderRadius={tokens.radii.large}
+              onClick={handleUploadClick}
+            >
+              Upload now
+            </Button>
+          </Flex>
+        </Card>
+        <TextField
+          descriptiveText=""
+          outline
+          placeholder="write a caption.."
+          label=""
+          errorMessage=""
+          borderRadius={tokens.radii.large}
+          isRequired={true}
+          width={"100%"}
+        />
+      </Flex>
     </Flex>
   );
 }
