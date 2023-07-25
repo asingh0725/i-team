@@ -85,6 +85,9 @@ function CreatePost() {
         borderRadius={tokens.radii.large}
         isRequired={true}
       />
+      <Flex direction="row-reverse" alignItems="flex-end">
+        <Button variation="primary">Post</Button>
+      </Flex>
     </Flex>
   );
 }
