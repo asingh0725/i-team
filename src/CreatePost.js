@@ -6,7 +6,7 @@ import {
   Card,
   Image,
   Button,
-  TextField,
+  TextAreaField,
   Text,
 } from "@aws-amplify/ui-react";
 import { FaLocationDot } from "react-icons/fa6";
@@ -104,95 +104,115 @@ function CreatePost() {
 
   return (
     <Flex
-      direction="column"
-      justifyContent="flex-start"
+      direction="row"
+      justifyContent="center"
       alignItems="center"
-      alignContent="center"
-      wrap="nowrap"
-      gap="2rem"
+      width={"100%"}
+      style={{ height: "100vh" }}
       padding={"3rem"}
     >
-      <Flex direction={"row"} alignItems={"center"}>
-        <FaLocationDot size={24}></FaLocationDot>
-        <SelectField
-          label=""
-          descriptiveText=""
-          borderRadius={tokens.radii.large}
-          placeholder="Select Pick-up location"
-          isRequired={true}
-          onChange={(e) => {
-            setLocation(e.target.value);
-            setErrors((prevErrors) => ({
-              ...prevErrors,
-              location: e.target.value ? null : "Location is required",
-            }));
-          }}
+      <Flex
+        direction="column"
+        justifyContent="flex-start"
+        alignItems="center"
+        alignContent="center"
+        wrap="nowrap"
+        gap="2rem"
+        padding={"3rem"}
+        width={"50%"}
+      >
+        <Flex
+          direction={"row"}
+          justifyContent={"flex-start"}
+          alignContent="center"
+          alignItems={"center"}
+          width={"100%"}
         >
-          {locationOption}
-        </SelectField>
-        {errors.location && (
-          <Text variation="error" as="em" fontSize={"1.5em"}>
-            {errors.location}
-          </Text>
-        )}
-      </Flex>
-      <Card variation="outlined" borderRadius={tokens.radii.large}>
-        <Flex direction={"column"} alignItems={"center"}>
-          {imageArray.length === 0 ? (
-            <Image src="/img/upload_image.png" />
-          ) : (
-            imgComponent
-          )}
-
-          <input
-            type="file"
-            ref={fileInput}
-            style={{ display: "none" }}
-            onChange={handleFileChange}
-            accept="image/*"
-            multiple
-          />
-          <Button
-            variation="primary"
-            size="large"
+          <FaLocationDot size={24}></FaLocationDot>
+          <SelectField
+            label=""
+            descriptiveText=""
             borderRadius={tokens.radii.large}
-            onClick={handleUploadClick}
+            placeholder="Select Pick-up location"
+            isRequired={true}
+            onChange={(e) => {
+              setLocation(e.target.value);
+              setErrors((prevErrors) => ({
+                ...prevErrors,
+                location: e.target.value ? null : "Location is required",
+              }));
+            }}
           >
-            Upload now
-          </Button>
-          {hasAttemptedUpload && errors.image && (
+            {locationOption}
+          </SelectField>
+          {errors.location && (
             <Text variation="error" as="em" fontSize={"1.5em"}>
-              {errors.image}
+              {errors.location}
             </Text>
           )}
         </Flex>
-      </Card>
-      <TextField
-        descriptiveText=""
-        outline
-        placeholder="write a caption.."
-        label=""
-        errorMessage=""
-        borderRadius={tokens.radii.large}
-        isRequired={true}
-        onChange={(e) => {
-          setCaption(e.target.value);
-          setErrors((prevErrors) => ({
-            ...prevErrors,
-            caption: e.target.value ? null : "Caption is required",
-          }));
-        }}
-        width={"50%"}
-      />
-      {errors.caption && (
-        <Text variation="error" as="em" fontSize={"1.5em"}>
-          {errors.caption}
-        </Text>
-      )}
-      <Flex direction="row-reverse" alignItems="flex-end">
-        <Button variation="primary" onClick={handlePost}>
-          Post
-        </Button>
+        <Card
+          variation="outlined"
+          borderRadius={tokens.radii.large}
+          width={"100%"}
+        >
+          <Flex direction={"column"} alignItems={"center"} width={"100%"}>
+            {imageArray.length === 0 ? (
+              <Image src="/img/upload_image.png" />
+            ) : (
+              imgComponent
+            )}
+
+            <input
+              type="file"
+              ref={fileInput}
+              style={{ display: "none" }}
+              onChange={handleFileChange}
+              accept="image/*"
+              multiple
+            />
+            <Button
+              variation="primary"
+              size="large"
+              borderRadius={tokens.radii.large}
+              onClick={handleUploadClick}
+            >
+              Upload now
+            </Button>
+            {hasAttemptedUpload && errors.image && (
+              <Text variation="error" as="em" fontSize={"1.5em"}>
+                {errors.image}
+              </Text>
+            )}
+          </Flex>
+        </Card>
+        <TextAreaField
+          descriptiveText=""
+          outline
+          placeholder="write a caption.."
+          label=""
+          errorMessage=""
+          borderRadius={tokens.radii.large}
+          isRequired={true}
+          onChange={(e) => {
+            setCaption(e.target.value);
+            setErrors((prevErrors) => ({
+              ...prevErrors,
+              caption: e.target.value ? null : "Caption is required",
+            }));
+          }}
+          width={"100%"}
+        />
+        {errors.caption && (
+          <Text variation="error" as="em" fontSize={"1.5em"}>
+            {errors.caption}
+          </Text>
+        )}
+        <Flex direction="row-reverse" alignItems="flex-end" width={"100%"}>
+          <Button variation="primary" onClick={handlePost}>
+            Post
+          </Button>
+        </Flex>
       </Flex>
     </Flex>
   );
