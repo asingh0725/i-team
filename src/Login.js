@@ -1,10 +1,10 @@
 import React from "react";
-import NavBar from './NavBar';
+import NavBar from './Navigation';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
 import "./App.css";
 
-export const Login = () => {
+const Login = () => {
     return (
         <div className="login">
             <NavBar />
@@ -29,3 +29,5 @@ export const Login = () => {
         </div>
     );
 };
+
+export default Login;
