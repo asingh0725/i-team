@@ -1,10 +1,10 @@
 import React from "react";
-import NavBar from './NavBar';
+import NavBar from './Navigation';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
 import "./App.css";
 
-const Landing = () => {
+const HomePage = () => {
     return (
         <div className="landing">
             <NavBar />
@@ -18,4 +18,4 @@ const Landing = () => {
     );
 }
 
-export default Landing;
+export default HomePage;
