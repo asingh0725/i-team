@@ -108,7 +108,6 @@ function CreatePost() {
       justifyContent="center"
       alignItems="center"
       width={"100%"}
-      style={{ height: "100vh" }}
       padding={"3rem"}
     >
       <Flex
@@ -130,6 +129,9 @@ function CreatePost() {
         >
           <FaLocationDot size={24}></FaLocationDot>
           <SelectField
+            style={{ borderWidth: 0 }}
+            backgroundColor={tokens.colors.white}
+            borderColor={"white"}
             label=""
             descriptiveText=""
             borderRadius={tokens.radii.large}
@@ -187,6 +189,9 @@ function CreatePost() {
           </Flex>
         </Card>
         <TextAreaField
+          backgroundColor={tokens.colors.white}
+          borderColor={"white"}
+          style={{ borderWidth: 0 }}
           descriptiveText=""
           outline
           placeholder="write a caption.."
