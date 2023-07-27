@@ -10,26 +10,37 @@
 /* Navigation Styling */
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Items are evenly distributed in the line with equal space around them */
   align-items: center;
-  padding: 20px;
+  padding: 1.25rem;
   background-color: #c0c0c0;
+  height: 5rem; /* Adjust this based on the height of your navbar */
+}
+
+.navbar__logo,
+.product__name {
+  display: flex;
+  align-items: center; /* Vertically aligns the logo and product name */
+}
+
+.navbar__logo {
+  margin-right: 1.25rem; /* Creates a space between the logo and the product name */
 }
 
 .navbar__logo img {
-  height: 50px;
-  margin-right: 10px;
+  height: 100%; /* Make the image fill its parent's height */
+  object-fit: contain; /* This will prevent the image from being stretched */
 }
 
-.navbar__logo span {
+.product__name {
   color: #fff;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
 .navbar__links {
   display: flex;
-  gap: 20px;
+  gap: 1.25rem;
 }
 
 .navbar__links a {
