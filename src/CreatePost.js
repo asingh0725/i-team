@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
+import { PostContext } from "./PostContext";
+import { useNavigate } from "react-router-dom";
 import {
   Flex,
   useTheme,
@@ -14,6 +16,8 @@ import "@aws-amplify/ui-react/styles.css";
 
 function CreatePost() {
   const { tokens } = useTheme();
+  const { addPost } = useContext(PostContext);
+  const navigate = useNavigate();
 
   //Add location
   const [location, setLocation] = useState(null);
@@ -84,6 +88,9 @@ function CreatePost() {
       // clear errors and post
       setErrors({});
       // post code here
+      console.log("Posting: ", { location, imageArray, caption });
+      addPost({ location, imageArray, caption });
+      navigate("/feed");
     }
   };
 
@@ -148,7 +155,12 @@ function CreatePost() {
             {locationOption}
           </SelectField>
           {errors.location && (
-            <Text variation="error" as="em" fontSize={"1.5em"}>
+            <Text
+              variation="error"
+              as="em"
+              fontSize={"1.5em"}
+              color={tokens.colors.white}
+            >
               {errors.location}
             </Text>
           )}
@@ -178,11 +190,17 @@ function CreatePost() {
               size="large"
               borderRadius={tokens.radii.large}
               onClick={handleUploadClick}
+              width={"50%"}
             >
               Upload now
             </Button>
             {hasAttemptedUpload && errors.image && (
-              <Text variation="error" as="em" fontSize={"1.5em"}>
+              <Text
+                variation="error"
+                as="em"
+                fontSize={"1.5em"}
+                color={tokens.colors.white}
+              >
                 {errors.image}
               </Text>
             )}
@@ -209,12 +227,17 @@ function CreatePost() {
           width={"100%"}
         />
         {errors.caption && (
-          <Text variation="error" as="em" fontSize={"1.5em"}>
+          <Text
+            variation="error"
+            as="em"
+            fontSize={"1.5em"}
+            color={tokens.colors.white}
+          >
             {errors.caption}
           </Text>
         )}
         <Flex direction="row-reverse" alignItems="flex-end" width={"100%"}>
-          <Button variation="primary" onClick={handlePost}>
+          <Button variation="primary" onClick={handlePost} width={"30%"}>
             Post
           </Button>
         </Flex>
