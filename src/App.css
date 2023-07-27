@@ -30,6 +30,7 @@
 .navbar__links {
   display: flex;
   gap: 20px;
+  font-size: larger;
 }
 
 .navbar__links a {
@@ -86,6 +87,10 @@ footer p {
   margin-bottom: 20px;
 }
 
+.login {
+  height: 100vh;
+}
+
 .login-button {
   background-color: #c0c0c0;
   color: #4b2e83;
@@ -100,6 +105,9 @@ footer p {
   background-color: #a9a9a9;
 }
 
+.back-button {
+  color: white;
+}
 /* About Page Styling */
 .about {
   display: flex;
@@ -113,9 +121,10 @@ footer p {
 .about-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   flex-grow: 1;
+  font-family: 'Encode Sans';
 }
 
 .about-title {
@@ -135,6 +144,7 @@ footer p {
   font-size: 1.2rem;
   line-height: 1.6;
   margin-bottom: 2rem;
+  width: 60%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -165,4 +175,8 @@ footer p {
   to {
     transform: rotate(360deg);
   }
+}
+
+.container {
+  background-color: #4b2e83;
 }
