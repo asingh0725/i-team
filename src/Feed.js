@@ -18,7 +18,6 @@ function Feed() {
   const { posts } = useContext(PostContext);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 3;
-
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -43,13 +42,22 @@ function Feed() {
               <FaLocationDot size={24} />
               <Text color={tokens.colors.white}>{post.location}</Text>
             </Flex>
-            <Carousel>
-              {post.imageArray.map((image, index) => (
-                <div key={index}>
-                  <Image src={image} width={"100%"} height={"25vw"} />
-                </div>
-              ))}
-            </Carousel>
+            {post.imageArray.length > 1 ? (
+              <Carousel width={"100%"} height="25vw">
+                {post.imageArray.map((image, index) => (
+                  <div key={index}>
+                    <Image src={image} width={"86%"} height={"25vw"} />
+                  </div>
+                ))}
+              </Carousel>
+            ) : (
+              <Image
+                src={post.imageArray[0]}
+                marginLeft={"7%"}
+                width={"86%"}
+                height={"25vw"}
+              />
+            )}
             <Text color={tokens.colors.white} alignSelf={"flex-start"}>
               {post.caption}
             </Text>
