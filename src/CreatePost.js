@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import locations from "./data/locations.json";
-import { PostContext } from "./PostContext";
+import { collection, addDoc, serverTimestamp } from "@firebase/firestore";
+import { ref, uploadBytesResumable, getDownloadURL } from "@firebase/storage";
+import { db, storage } from "./firebase";
 import { useNavigate } from "react-router-dom";
 import {
   Flex,
@@ -17,7 +19,6 @@ import "@aws-amplify/ui-react/styles.css";
 
 function CreatePost() {
   const { tokens } = useTheme();
-  const { addPost } = useContext(PostContext);
   const navigate = useNavigate();
 
   //Add location
@@ -43,13 +44,30 @@ function CreatePost() {
     setHasAttemptedUpload(true);
   };
 
-  const handleFileChange = (event) => {
+  const handleFileChange = async (event) => {
     const files = event.target.files;
     console.log("Files =", files);
     for (let i = 0; i < files.length; i++) {
-      const img = URL.createObjectURL(files[i]);
-      console.log("IMG url = ", img);
-      setImageArray((imageArray) => [...imageArray, img]);
+      const storageRef = ref(storage, "images/" + files[i].name);
+      const uploadTask = uploadBytesResumable(storageRef, files[i]);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          var progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+        },
+        (error) => {
+          console.error("Upload failed:", error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log("File available at", downloadURL);
+            setImageArray((imageArray) => [...imageArray, downloadURL]);
+          });
+        }
+      );
     }
     event.target.value = null;
   };
@@ -96,7 +114,15 @@ function CreatePost() {
       setErrors({});
       // post code here
       console.log("Posting: ", { location, imageArray, caption });
-      addPost({ location, imageArray, caption });
+      addDoc(collection(db, "posts"), {
+        location: location,
+        imageArray: imageArray,
+        caption: caption,
+        timestamp: serverTimestamp(),
+      }).catch((error) => {
+        alert(error.message);
+      });
+      //addPost({ location, imageArray, caption });
       navigate("/feed");
     }
   };
