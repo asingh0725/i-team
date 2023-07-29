@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { PostProvider } from "./PostContext";
 import NavBar from "./Navigation"; // assuming Navigation.js is in the same directory
 import CreatePost from "./CreatePost"; // assuming CreatePost.js is in the same directory
 import "./App.css";
@@ -12,25 +11,23 @@ import Feed from "./Feed";
 
 function App() {
   return (
-    <PostProvider>
-      <Router>
-        <div className="App">
-          <NavBar />
-          <div className="container">
-            {/* The routes for the application */}
-            <Routes>
-              <Route path="/about" element={<About />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/create-post" element={<CreatePost />} />
-              <Route path="/feed" element={<Feed />} />
-              <Route path="/" element={<Home />} />
-            </Routes>
-          </div>
-          <Footer />
+    <Router>
+      <div className="App">
+        <NavBar />
+        <div className="container">
+          {/* The routes for the application */}
+          <Routes>
+            <Route path="/about" element={<About />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/create-post" element={<CreatePost />} />
+            <Route path="/feed" element={<Feed />} />
+            <Route path="/" element={<Home />} />
+          </Routes>
         </div>
-      </Router>
-    </PostProvider>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
