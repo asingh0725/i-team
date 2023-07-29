@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
+import locations from "./data/locations.json";
 import { PostContext } from "./PostContext";
 import { useNavigate } from "react-router-dom";
 import {
   Flex,
   useTheme,
-  SelectField,
   Card,
   Image,
   Button,
   TextAreaField,
   Text,
+  Autocomplete,
 } from "@aws-amplify/ui-react";
 import { FaLocationDot } from "react-icons/fa6";
 import "@aws-amplify/ui-react/styles.css";
@@ -21,10 +22,16 @@ function CreatePost() {
 
   //Add location
   const [location, setLocation] = useState(null);
-  const locations = ["Kane 220", "MGH 430", "Denny 374"];
-  const locationOption = locations.map((location) => {
-    return <option value={location}>{location}</option>;
-  });
+  const [value, setValue] = React.useState("");
+  const onSelect = (option) => {
+    const { label } = option;
+    setLocation(label);
+    setValue(label);
+  };
+  const onClear = () => {
+    setValue("");
+    setLocation(null);
+  };
 
   //Upload Image
   const [hasAttemptedUpload, setHasAttemptedUpload] = useState(false);
@@ -135,25 +142,26 @@ function CreatePost() {
           width={"100%"}
         >
           <FaLocationDot size={24}></FaLocationDot>
-          <SelectField
+          <Autocomplete
             style={{ borderWidth: 0 }}
+            label="Locations across UW campus"
             backgroundColor={tokens.colors.white}
             borderColor={"white"}
-            label=""
-            descriptiveText=""
             borderRadius={tokens.radii.large}
             placeholder="Select Pick-up location"
-            isRequired={true}
             onChange={(e) => {
               setLocation(e.target.value);
+              setValue(e.target.value);
               setErrors((prevErrors) => ({
                 ...prevErrors,
                 location: e.target.value ? null : "Location is required",
               }));
             }}
-          >
-            {locationOption}
-          </SelectField>
+            options={locations}
+            value={value}
+            onClear={onClear}
+            onSelect={onSelect}
+          ></Autocomplete>
           {errors.location && (
             <Text
               variation="error"
