@@ -31,7 +31,7 @@ const Home = () => {
           fontFamily='"Encode Sans-Regular", Helvetica'
           fontSize="3.125rem"
           fontWeight="400"
-          letterSpacing="2px"
+          letterSpacing="0.125rem"
           marginBottom="1.25rem"
         >
           Welcome to Share-A-Bite

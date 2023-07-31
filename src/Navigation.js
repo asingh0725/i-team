@@ -8,18 +8,19 @@ const NavBar = () => {
       direction="row"
       justifyContent="space-between"
       alignItems="center"
-      padding="20px"
+      padding="1.25rem"
       backgroundColor="#c0c0c0"
+      height="4.125rem" // Set a specific height for the navbar
     >
       <Flex alignItems="center">
         <Link to="/home" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-          <img src="img/header_logo.png" alt="Logo" style={{ height: '50px', marginRight: '10px' }} />
-          <Text color="#fff" fontSize="24px" fontWeight="bold">
+          <img src="img/header_logo.png" alt="Logo" style={{ height: '4.125rem', marginRight: '0.625rem' }} />
+          <Text color="#fff" fontSize="1.5rem" fontWeight="bold">
             SHARE-A-BITE
           </Text>
         </Link>
       </Flex>
-      <Flex direction="row" gap="20px" style={{ fontSize: 'larger' }}>
+      <Flex direction="row" gap="1.25rem" style={{ fontSize: '1.25rem' }}>
         <Link to="/home" style={{ color: '#fff', textDecoration: 'none' }}>Home</Link>
         <Link to="/create-post" style={{ color: '#fff', textDecoration: 'none' }}>Create Post</Link>
         <Link to="/about" style={{ color: '#fff', textDecoration: 'none' }}>About</Link>
