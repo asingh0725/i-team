@@ -1,36 +1,81 @@
 import React from "react";
-import "./App.css";
+import { Flex, Text } from "@aws-amplify/ui-react";
 
 const About = () => {
   return (
-    <div className="about">
-      <main className="about-content">
-        <h1 className="about-title">About Us</h1>
-        <div className="about-section">
-          <h2 className="about-section-title">Why Share-A-Bite?</h2>
-          <p className="about-section-content">
-            Share-A-Bite is a platform that enables clubs and organizations to
-            share information about their surplus food with hungry students at
-            the University of Washington Seattle. By facilitating this exchange,
-            Share-A-Bite not only helps address food insecurity among students
-            but also contributes to the reduction of food waste.
-          </p>
-        </div>
+    <Flex
+      direction="column"
+      minHeight="100vh"
+      padding="2rem"
+      backgroundColor="#4b2e83"
+      color="white"
+    >
 
-        <div className="about-section">
-          <h2 className="about-section-title">How do I use it?</h2>
-          <p className="about-section-content">
-            1. Log in using your UW netID <br />
-            2. After logging in with your UW netID, you will gain access to
-            Share-A-Bite's feed, which is filled with posts about available food
-            options <br />
-            3. To create a post, simply click on the "create post" button and
-            provide all the necessary information as prompted <br />
-            4. All posts get deleted after 24hrs
-          </p>
-        </div>
-      </main>
-    </div>
+        <Flex
+          direction="column"
+          alignItems="center"
+          marginBottom="2rem"
+        >
+        <Text
+          as="h1"
+          textAlign="center"
+          fontSize="2.5rem"
+          color="white"
+        >
+          About Us
+        </Text>
+        </Flex>
+
+        <Flex direction="column" alignItems="start" width="60%" marginLeft="auto" marginRight="auto">
+            
+            <Flex direction="column">
+            <Text
+                as="h2"
+                textAlign="left"
+                fontSize="1.7rem"
+                marginBottom="1rem"
+                color="white"
+            >
+                Why Share-A-Bite?
+            </Text>
+            <Text
+                as="p"
+                textAlign="left"
+                fontSize="1.2rem"
+                lineHeight="1.6"
+                marginBottom="1rem"
+                color="white"
+            >
+                Share-A-Bite is a platform that enables clubs and organizations to share information about their surplus food with hungry students at the University of Washington Seattle. By facilitating this exchange, Share-A-Bite not only helps address food insecurity among students but also contributes to the reduction of food waste.
+            </Text>
+            </Flex>
+
+            <Flex direction="column">
+            <Text
+                as="h2"
+                textAlign="left"
+                fontSize="1.7rem"
+                marginBottom="1rem"
+                color="white"
+            >
+                How do I use it?
+            </Text>
+            <Text
+                as="p"
+                textAlign="left"
+                fontSize="1.2rem"
+                lineHeight="1.6"
+                marginBottom="2rem"
+                color="white"
+            >
+                1. Log in using your UW netID <br />
+                2. After logging in with your UW netID, you will gain access to Share-A-Bite's feed, which is filled with posts about available food options <br />
+                3. To create a post, simply click on the "create post" button and provide all the necessary information as prompted <br />
+                4. All posts get deleted after 24hrs
+            </Text>
+            </Flex>
+      </Flex>
+    </Flex>
   );
 };
 

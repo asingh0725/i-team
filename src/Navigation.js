@@ -1,22 +1,31 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./App.css";
+import React from 'react';
+import { Flex, Text } from '@aws-amplify/ui-react';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   return (
-    <nav className="navbar">
-      <div className="navbar__logo">
-        <Link to={"/home"} style={{ textDecoration: "none" }}>
-          <img src="img/header_logo.png" alt="Logo" />
-          <span>SHARE-A-BITE</span>
+    <Flex
+      direction="row"
+      justifyContent="space-between"
+      alignItems="center"
+      padding="1.25rem"
+      backgroundColor="#c0c0c0"
+      height="4.125rem" // Set a specific height for the navbar
+    >
+      <Flex alignItems="center">
+        <Link to="/home" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+          <img src="img/header_logo.png" alt="Logo" style={{ height: '4.125rem', marginRight: '0.625rem' }} />
+          <Text color="#fff" fontSize="1.5rem" fontWeight="bold">
+            SHARE-A-BITE
+          </Text>
         </Link>
-      </div>
-      <div className="navbar__links">
-        <Link to="/home">Home</Link>
-        <Link to="/create-post">Create Post</Link>
-        <Link to="/about">About</Link>
-      </div>
-    </nav>
+      </Flex>
+      <Flex direction="row" gap="1.25rem" style={{ fontSize: '1.25rem' }}>
+        <Link to="/home" style={{ color: '#fff', textDecoration: 'none' }}>Home</Link>
+        <Link to="/create-post" style={{ color: '#fff', textDecoration: 'none' }}>Create Post</Link>
+        <Link to="/about" style={{ color: '#fff', textDecoration: 'none' }}>About</Link>
+      </Flex>
+    </Flex>
   );
 };
 

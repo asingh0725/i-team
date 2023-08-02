@@ -233,7 +233,7 @@ function CreatePost() {
                 variation="error"
                 as="em"
                 fontSize={"1.5em"}
-                color={tokens.colors.white}
+                color={tokens.colors.purple}
               >
                 {errors.image}
               </Text>
