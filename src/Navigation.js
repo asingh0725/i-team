@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useContext} from 'react';
 import { Flex, Text } from '@aws-amplify/ui-react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from './AuthContext';
 
 const NavBar = () => {
+  // Use the AuthContext to get the current user
+  const user = useContext(AuthContext);
+
   return (
     <Flex
       direction="row"
@@ -21,9 +25,19 @@ const NavBar = () => {
         </Link>
       </Flex>
       <Flex direction="row" gap="1.25rem" style={{ fontSize: '1.25rem' }}>
-        <Link to="/home" style={{ color: '#fff', textDecoration: 'none' }}>Home</Link>
-        <Link to="/create-post" style={{ color: '#fff', textDecoration: 'none' }}>Create Post</Link>
-        <Link to="/about" style={{ color: '#fff', textDecoration: 'none' }}>About</Link>
+        {/* If users get verified, they can access "Create Post" and "About";
+            If users get inverified, they can't access Create Post, but "Home" and "About" */}
+        {user && user.emailVerified ? (
+          <>
+            <Link to="/create-post" style={{ color: '#fff', textDecoration: 'none' }}>Create Post</Link>
+            <Link to="/about" style={{ color: '#fff', textDecoration: 'none' }}>About</Link>
+          </>
+        ) : (
+          <>
+            <Link to="/home" style={{ color: '#fff', textDecoration: 'none' }}>Home</Link>
+            <Link to="/about" style={{ color: '#fff', textDecoration: 'none' }}>About</Link>
+          </>
+        )}
       </Flex>
     </Flex>
   );
