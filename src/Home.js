@@ -17,7 +17,6 @@ const Home = () => {
         alignItems="center"
         justifyContent="center"
         width="100%"
-        padding="1.25rem"
       >
         <Image
           src="img/husky.png"
@@ -46,7 +45,7 @@ const Home = () => {
             padding: "0.625rem 1.25rem",
             textDecoration: "none",
             fontSize: "1.125rem",
-            transition: "background-color 0.3s ease",
+            transition: "background-color 0.3s ease"
           }}
         >
           Click Here to Log-In

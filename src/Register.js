@@ -1,47 +1,40 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { auth } from "./firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "./firebase";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "./AuthContext";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 import { Flex, Text } from "@aws-amplify/ui-react";
 
-const Login = () => {
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+function Register() {
   const navigate = useNavigate();
-  const { user, isLoggedIn } = useContext(AuthContext);
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Check if email address ends with "@uw.edu"
+    if (!registerEmail.endsWith("@uw.edu")) {
+      alert("Please use a valid @uw.edu email address.");
+      return; // Exit the function to stop further execution
+    }
+
     try {
-      const userCredential = await signInWithEmailAndPassword(
+      const userCredential = await createUserWithEmailAndPassword(
         auth,
-        loginEmail,
-        loginPassword
+        registerEmail,
+        registerPassword
       );
-      const loggedUser = userCredential.user;
+      const newUser = userCredential.user;
 
-      if (!loggedUser.emailVerified) {
-        alert("Please verify your email before logging in.");
-      } else {
-        // User is logged in and email is verified
-        // Check if user exists in Firestore, if not, add them
-        const userRef = doc(db, "users", loggedUser.uid);
-        const userSnap = await getDoc(userRef);
-
-        if (!userSnap.exists()) {
-          await setDoc(userRef, {
-            email: loggedUser.email,
-            uid: loggedUser.uid,
-            timestamp: serverTimestamp(),
-          });
-        }
-        // Redirect after everything is done
-        navigate("/home");
-        window.location.reload();
+      if (newUser) {
+        await sendEmailVerification(newUser);
+        alert(
+          "Verification email sent. Please check your inbox and then login"
+        );
+        navigate("/login");
       }
     } catch (error) {
       alert(error.message);
@@ -64,38 +57,35 @@ const Login = () => {
         width="100%"
         padding="1.25rem"
       >
+        <h1 style={{ color: "#ffffff" }}>Sign Up</h1>
         <form onSubmit={handleSubmit}>
           <Flex direction="column" gap="1rem">
             <Text color="#ffffff">
-              <label htmlFor="email">Email:</label>
+              <label htmlFor="register-email">Email Address:</label>
             </Text>
             <input
               style={{
                 fontSize: "1.5rem",
                 padding: "10px 15px",
               }}
+              id="register-email"
               type="email"
-              id="email"
-              value={loginEmail}
-              onChange={(e) => setLoginEmail(e.target.value)}
-              required
+              value={registerEmail}
+              onChange={(e) => setRegisterEmail(e.target.value)}
             />
-
             <Text color="#ffffff">
-              <label htmlFor="password">Password:</label>
+              <label htmlFor="register-password">Password:</label>
             </Text>
             <input
               style={{
                 fontSize: "1.5rem",
                 padding: "10px 15px",
               }}
+              id="register-password"
               type="password"
-              id="password"
-              value={loginPassword}
-              onChange={(e) => setLoginPassword(e.target.value)}
-              required
+              value={registerPassword}
+              onChange={(e) => setRegisterPassword(e.target.value)}
             />
-
             <button
               type="submit"
               style={{
@@ -108,24 +98,24 @@ const Login = () => {
                 transition: "background-color 0.3s ease",
               }}
             >
-              Login
+              Register
             </button>
           </Flex>
         </form>
         <Text color="#ffffff">
           <Link
-            to="/register"
+            to={`/login/`}
             style={{
               color: "#FFFFFF",
               textDecoration: "underline",
             }}
           >
-            Don't have an account? Register here.
+            Go to Login
           </Link>
         </Text>
       </Flex>
     </Flex>
   );
-};
+}
 
-export default Login;
+export default Register;
