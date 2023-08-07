@@ -24,6 +24,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [dataLoaded, setDataLoaded] = useState({ navBar: false, feed: false });
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -45,6 +46,8 @@ function App() {
       value={{
         user: currentUser,
         isLoggedIn: currentUser && currentUser.emailVerified,
+        dataLoaded,
+        setDataLoaded,
       }}
     >
       <Router>
