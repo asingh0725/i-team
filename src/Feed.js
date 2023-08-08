@@ -92,7 +92,7 @@ function Feed() {
                 <Carousel width="100%" height="100%">
                   {post.imageArray.map((image, index) => (
                     <div key={index}>
-                      <Image src={image} width={"55vh"} height={"25vw"} />
+                      <Image src={image} width={"55vh"} height={"25vw"} borderRadius={tokens.radii.large}/>
                     </div>
                   ))}
                 </Carousel>
