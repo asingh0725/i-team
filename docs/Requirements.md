@@ -14,7 +14,6 @@
 
 **SWP.3: Navigation Bar Logo:** On click of the logo on the navigation bar, it must navigate to the home page. complete issue #11
 
-# Home Page
 
 # Home Page
 
@@ -138,17 +137,17 @@ Complete: Issue #10
 
 **F.4: Display the location pin** Each post must display an icon of a location pin and the location of the post to the right of the avatar.
 complete issue #17
-**F.5: Display the food images/captions with each post** Each post must display the uploaded image(s) and the caption below the image. complete issue #17
+**F.5: Display the food images/captions with each post** Each post must display the uploaded image(s) and the caption below the image. complete issue #14
 
 **F.6: Scrolling feature** The system must provide a scrolling feature, allowing users to browse multiple posts on the “Feed” page.
 complete issue #17
 # About Us
 
-**A.1: Access for All Users:** It does not matter if users are logged in or not, they will have access to the “About” page.
+**A.1: Access for All Users:** It does not matter if users are logged in or not, they will have access to the “About” page. complete #5
 
-**A.2: Title:** The "About" page must display "About Us" at the middle top of the body.
+**A.2: Title:** The "About" page must display "About Us" at the middle top of the body. complete #5
 
-**A.3: Why Share-A-Bite? Description:** The “About” page must display the paragraph that describes the reason why we created this app underneath the headline of “Why Share-A-Bite?”.
+**A.3: Why Share-A-Bite? Description:** The “About” page must display the paragraph that describes the reason why we created this app underneath the headline of “Why Share-A-Bite?”. complete #5
 
-**A.4: How to Use the App:** The “About” page must display the paragraph that describes how users can use this app by breaking it down into four steps and explaining them underneath the headline of “How do I use it?”.
+**A.4: How to Use the App:** The “About” page must display the paragraph that describes how users can use this app by breaking it down into four steps and explaining them underneath the headline of “How do I use it?”. complete #5
 
