@@ -16,27 +16,30 @@
 
 # Home Page
 
+# Home Page
+
 **When users are not logged in**, it will contain the following:
 
-**HP.1: Navigation Bar:** Logo on the far right, home, about page, log-in buttons.
+**HP.1: Navigation Bar:** Logo on the far right, home, about page, log-in buttons. complete issue #11
 
-**HP.2: Welcome Sign:** Below the navigation bar, there must be a welcome sign that includes a picture of a husky.
+**HP.2: Welcome Sign:** Below the navigation bar, there must be a welcome sign that includes a picture of a husky. complete issue #4
 
-**HP.3: Log In Button:** Below the welcome sign, there must be a button that, on click, prompts users to log in with their UW NetID.
+**HP.3: Log In Button:** Below the welcome sign, there must be a button that, on click, prompts users to log in with their UW NetID. complete issue #6
 
-**HP.4: Home Button:** On click of the home button, it will navigate users to a welcome page.
+**HP.4: Home Button:** On click of the home button, it will navigate users to a welcome page. complete #6
 
 **When users are logged in**, it will contain the following:
 
-**HP.5: Navigation Bar:** Logo on the far right, an avatar, home, about page, and create post buttons.
+**HP.5: Navigation Bar:** Logo on the far right, an avatar, home, about page, and create post buttons. complete issue #11
 
-**HP.6: Feed:** A feed that includes a location, description, and pictures of food must be displayed. This functionality is similar to Instagram's feed, which provides a familiar experience for users.
+**HP.6: Feed:** A feed that includes a location, description, and pictures of food must be displayed. This functionality is similar to Instagram's feed, which provides a familiar experience for users. complete issue #17
 
-**HP.7: Scrollable Feed:** Users must be able to scroll down the feed to view more content.
+**HP.7: Scrollable Feed:** Users must be able to scroll down the feed to view more content. complete issue #17
 
-**HP.8: Avatars:** Student’s avatars will use the avatar that is linked to their email.
+**HP.8: Avatars:** Student’s avatars will use the avatar that is linked to their email. can't do this because we can't use the UW API incomplete 
 
-**HP.9: Home Button:** On click of the home button, it will navigate users to their feed.
+**HP.9: Home Button:** On click of the home button, it will navigate users to their feed. complete issue #11
+
 
 # Log In
 
