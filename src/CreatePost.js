@@ -150,7 +150,7 @@ function CreatePost() {
         alert(error.message);
       });
       //addPost({ location, imageArray, caption });
-      navigate("/feed");
+      navigate("/home");
     }
   };
 
