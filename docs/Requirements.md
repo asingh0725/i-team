@@ -81,22 +81,30 @@ Complete: Issue #10
 # Post Food Error: Missing Image
 
 **PI.1: Navigation Bar:** Logo on the far right, home, create post, and about buttons.
+Completed: Issue #11
 
 **PI.2: Image Box:** Under the location button, includes a box with a button that prompts users to upload their image on click.
+Complete: Issue #14
 
 **PI.3: Caption Box:** Under the image box, includes a button that prompts users to enter a caption on click, and to the right of this button is a green button that prompts users to post after clicking it.
+Complete: Issue #15 and #16
 
 **PI.4: Error Message:** If the user tries to post without including an image, a brown error message appears on the body of the page that warns users to add an image.
+Complete: Issue #10
 
 # Post Food Error: Missing Caption
 
 **PC.1: Navigation Bar:** Logo on the far right, home, create post, and about buttons.
+Completed: Issue #11
 
 **PC.4: Location Box:** Under the location button, includes a box with a button that prompts users to upload their image on click.
+Complete: Issue #14
 
 **PC.5: Image Box:** Under the image box, includes a button that prompts users to enter a caption on click, and to the right of this button is a green button that prompts users to post after clicking it.
+Complete: Issue #15 and #16
 
 **PC.6: Error Message:** If the user tries to post without including a caption, a brown error message appears on the body of the page that warns users to add a caption.
+Complete: Issue #10
 
 # Post Food
 
