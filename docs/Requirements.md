@@ -41,13 +41,14 @@
 # Log In
 
 **LI.1: Log In Button:** On click of the "Log-in" button on the nav bar, users must be prompted to a new page where they can log in with their UW NetID.
+Completed: Issue #6
 
 **LI.2: Log In Prompt:** On click of the "click here to login" button, users must be prompted to a login screen where they can log in with their UW NetID.
-
+Completed: Issue #12
 **LI.3: Login Screen:** The login screen will be the same as all UW-related things that ask for your UW NetID.
-
+Completed: Issue #18
 **LI.4: Navigation Bar:** Logo on the far right, home, about page, log-in buttons.
-
+Completed: Issue #11
 # Login Error
 
 **LE.1: Login Prompt:** Once users click on the "Log-in" button, then users will be prompted to log in with their UW NetID.
