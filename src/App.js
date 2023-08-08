@@ -8,7 +8,7 @@ import {
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 
-import NavBar from "./Navigation";
+import { NavBarLoggedIn, NavBarNotLoggedIn } from "./Navigation";
 import CreatePost from "./CreatePost";
 import "./App.css";
 import Footer from "./Footer";
@@ -24,6 +24,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [dataLoaded, setDataLoaded] = useState({ navBar: false, feed: false });
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -45,28 +46,38 @@ function App() {
       value={{
         user: currentUser,
         isLoggedIn: currentUser && currentUser.emailVerified,
+        dataLoaded,
+        setDataLoaded,
       }}
     >
       <Router>
         <div className={loading ? "app-fade-in" : "App"}>
-          <NavBar />
-          <div className="container">
-            <Routes>
-              <Route path="/about" element={<About />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-              <Route
-                path="/create-post"
-                element={isLoggedIn ? <CreatePost /> : <Navigate to="/login" />}
-              />
-              <Route
-                path="/feed"
-                element={isLoggedIn ? <Feed /> : <Navigate to="/login" />}
-              />
-              <Route path="/home" element={isLoggedIn ? <Feed /> : <Home />} />
-              <Route path="/" element={isLoggedIn ? <Feed /> : <Home />} />
-            </Routes>
-          </div>
+          {!isLoggedIn ? (
+            <>
+              <NavBarNotLoggedIn />
+              <div className="container">
+                <Routes>
+                  <Route path="/about" element={<About />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/home" element={<Home />} />
+                  <Route path="/" element={<Home />} />
+                </Routes>
+              </div>
+            </>
+          ) : (
+            <>
+              <NavBarLoggedIn />
+              <div className="container">
+                <Routes>
+                  <Route path="/about" element={<About />} />
+                  <Route path="/create-post" element={<CreatePost />} />
+                  <Route path="/home" element={<Feed />} />
+                  <Route path="/" element={<Feed />} />
+                </Routes>
+              </div>
+            </>
+          )}
           <Footer />
         </div>
       </Router>
