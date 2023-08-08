@@ -8,11 +8,11 @@
 
 # Site-wide requirements
 
-**SWP.1: Footer:** A footer with the copyright name and creator names.
+**SWP.1: Footer:** A footer with the copyright name and creator names. complete issue #42
 
-**SWP.2: Navigation Bar Button:** On click of a button on the navigation bar, it must take users to the corresponding page.
+**SWP.2: Navigation Bar Button:** On click of a button on the navigation bar, it must take users to the corresponding page. complete issue #11
 
-**SWP.3: Navigation Bar Logo:** On click of the logo on the navigation bar, it must navigate to the home page.
+**SWP.3: Navigation Bar Logo:** On click of the logo on the navigation bar, it must navigate to the home page. complete issue #11
 
 # Home Page
 
