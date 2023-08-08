@@ -2,9 +2,9 @@
 
 # Non-Functional Requirements
 
-**NF.1: Maintainability:** After 24 hours of a post being posted, it will be removed automatically.
+**NF.1: Maintainability:** After 24 hours of a post being posted, it will be removed automatically. incomplete 
 
-**NF.2: Security of Users:** Only UW students will be able to access our platform. Therefore, they will need to log in with their UW NetID credentials.
+**NF.2: Security of Users:** Only UW students will be able to access our platform. Therefore, they will need to log in with their UW NetID credentials. complete issue #18 
 
 # Site-wide requirements
 
