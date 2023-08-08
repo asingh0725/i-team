@@ -72,6 +72,7 @@ Complete: Issue #16
 
 **Pl.3: Location Box:** Under the location button, includes a box with a button that prompts users to upload their image on click.
 Complete: Issue #14
+
 **Pl.4: Image Box:** Under the image box, includes a button that prompts users to enter a caption on click, and to the right of this button is a green button that prompts users to post after clicking it.
 Complete: Issue #15 and #16
 
