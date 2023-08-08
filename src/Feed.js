@@ -77,8 +77,8 @@ function Feed() {
             <Flex direction={"row"}>
               <Image
                 objectFit="initial"
-                height={["2.125rem", "3.125rem","4rem"]}
-                width={["2.125rem", "3.125rem","4rem"]}
+                height={["2.125rem", "5.125rem","6rem"]}
+                width={["2.125rem", "5.125rem","6rem"]}
                 src={userProfileImage}
                 borderRadius={"50%"}
               />
