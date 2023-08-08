@@ -228,13 +228,15 @@ const NavBarLoggedIn = () => {
           <Button
             backgroundColor={tokens.colors.transparent}
             borderRadius={"50%"}
-            height={["2.125rem", "2.125rem","3.125rem"]}
+            height={["2.125rem", "3.125rem","4rem"]}
+            width={["2.125rem", "3.125rem","4rem"]}
             onClick={handleUploadClick}
             padding={"0.3rem"}
           >
             <Image
               borderRadius={"50%"}
               height={["100%"]}
+              width={["100%"]}
               src={
                 isLoading
                   ? "img/sample_user.png"
@@ -248,8 +250,8 @@ const NavBarLoggedIn = () => {
             variation="warning"
             justifyContent={"center"}
             onClick={handleLogout}
-            height={["1.725rem", "2.125rem","3.125rem"]}
-            width={["3.125rem", "3.725rem","4.125rem"]}
+            height={["1.725rem", "2.125rem","2.725rem"]}
+            width={["3.125rem", "3.725rem","6.125rem"]}
             fontSize={["0.65rem", "0.7rem","1rem"]}
           >
             Log Out

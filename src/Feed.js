@@ -77,15 +77,18 @@ function Feed() {
             <Flex direction={"row"}>
               <Image
                 objectFit="initial"
-                width="15%"
-                height="15%"
+                height={["2.125rem", "3.125rem","4rem"]}
+                width={["2.125rem", "3.125rem","4rem"]}
                 src={userProfileImage}
                 borderRadius={"50%"}
               />
               <Flex direction={"column"}>
                 <Flex direction={"row"}>
                   <FaLocationDot size={24} />
-                  <Text color={tokens.colors.white} fontSize={["1.15rem", "1.2rem", "1.25em"]}>
+                  <Text
+                  color={tokens.colors.white}
+                  fontSize={["1.15rem", "1.2rem", "1.25em"]}
+                  >
                     {post.location}
                   </Text>
                 </Flex>
