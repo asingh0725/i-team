@@ -176,6 +176,7 @@ function CreatePost() {
       alignItems="center"
       width={"100%"}
       padding={["1.5rem", "1.75rem", "3rem"]}
+      minHeight="100vh"
     >
       <Flex
         direction="column"
