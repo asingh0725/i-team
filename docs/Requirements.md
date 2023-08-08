@@ -130,18 +130,18 @@ Complete: Issue #10
 
 # Feed
 
-**F.1: Feed Page:** The system must provide a "Feed" page where users can view all posts.
+**F.1: Feed Page:** The system must provide a "Feed" page where users can view all posts. complete issue #17
 
-**F.2: Vertical Post Display:** Posts should be displayed vertically in the center of the "Feed" page.
+**F.2: Vertical Post Display:** Posts should be displayed vertically in the center of the "Feed" page. complete issue #17
 
-**F.3: User Avatar:** Each post must display an image of the avatar of the post creator at the top left of the post. This avatar must be fetched from the user's profile.
+**F.3: User Avatar:** Each post must display an image of the avatar of the post creator at the top left of the post. This avatar must be fetched from the user's profile. complete issue #17
 
 **F.4: Display the location pin** Each post must display an icon of a location pin and the location of the post to the right of the avatar.
-
-**F.5: Display the food images/captions with each post** Each post must display the uploaded image(s) and the caption below the image.
+complete issue #17
+**F.5: Display the food images/captions with each post** Each post must display the uploaded image(s) and the caption below the image. complete issue #17
 
 **F.6: Scrolling feature** The system must provide a scrolling feature, allowing users to browse multiple posts on the “Feed” page.
-
+complete issue #17
 # About Us
 
 **A.1: Access for All Users:** It does not matter if users are logged in or not, they will have access to the “About” page.
