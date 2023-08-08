@@ -175,7 +175,8 @@ function CreatePost() {
       justifyContent="center"
       alignItems="center"
       width={"100%"}
-      padding={"3rem"}
+      minHeight="100vh"
+      padding={["1.5rem", "1.75rem", "3rem"]}
     >
       <Flex
         direction="column"
@@ -184,17 +185,17 @@ function CreatePost() {
         alignContent="center"
         wrap="nowrap"
         gap="2rem"
-        padding={"3rem"}
-        width={"50%"}
+        padding={["1.5rem", "1.75rem", "3rem"]}
+        // width={"50%"}
       >
         <Flex
           direction={"row"}
           justifyContent={"flex-start"}
           alignContent="center"
           alignItems={"center"}
-          width={"100%"}
+          // width={"100%"}
         >
-          <FaLocationDot size={24}></FaLocationDot>
+          <FaLocationDot size="24"></FaLocationDot>
           <Autocomplete
             style={{ borderWidth: 0 }}
             label="Locations across UW campus"
@@ -219,7 +220,7 @@ function CreatePost() {
             <Text
               variation="error"
               as="em"
-              fontSize={"1.5em"}
+              fontSize={["1.25rem", "1.35rem", "1.5em"]}
               color={tokens.colors.white}
             >
               {errors.location}
@@ -248,7 +249,7 @@ function CreatePost() {
             />
             <Button
               variation="primary"
-              size="large"
+              size="medium"
               borderRadius={tokens.radii.large}
               onClick={handleUploadClick}
               width={"50%"}
@@ -259,7 +260,7 @@ function CreatePost() {
               <Text
                 variation="error"
                 as="em"
-                fontSize={"1.5em"}
+                fontSize={["1.25rem", "1.35rem", "1.5em"]}
                 color={tokens.colors.purple}
               >
                 {errors.image}
@@ -291,7 +292,7 @@ function CreatePost() {
           <Text
             variation="error"
             as="em"
-            fontSize={"1.5em"}
+            fontSize={["1.25rem", "1.35rem", "1.5em"]}
             color={tokens.colors.white}
           >
             {errors.caption}

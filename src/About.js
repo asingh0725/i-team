@@ -4,9 +4,10 @@ import { Flex, Text } from "@aws-amplify/ui-react";
 const About = () => {
   return (
     <Flex
+      alignItems="center"
       direction="column"
       minHeight="100vh"
-      padding="2rem"
+      padding={["2rem", "2.25rem"]}
       backgroundColor="#4b2e83"
       color="white"
     >
@@ -14,26 +15,26 @@ const About = () => {
         <Flex
           direction="column"
           alignItems="center"
-          marginBottom="2rem"
+          marginBottom={["1.25rem", "1.75rem", "2.25rem"]}
         >
         <Text
           as="h1"
           textAlign="center"
-          fontSize="2.5rem"
+          fontSize={['1.25rem', '1.75rem', '2.5rem']}
           color="white"
         >
           About Us
         </Text>
         </Flex>
 
-        <Flex direction="column" alignItems="start" width="60%" marginLeft="auto" marginRight="auto">
+        <Flex direction="column" alignItems="center">
             
             <Flex direction="column">
             <Text
                 as="h2"
                 textAlign="left"
-                fontSize="1.7rem"
-                marginBottom="1rem"
+                fontSize={["1.25rem", "1.75rem", "1.7rem"]}
+                marginBottom={["1.25rem", "1.75rem", "2.25rem"]}
                 color="white"
             >
                 Why Share-A-Bite?
@@ -41,21 +42,19 @@ const About = () => {
             <Text
                 as="p"
                 textAlign="left"
-                fontSize="1.2rem"
+                fontSize={["0.8rem", "1rem", "1.2rem"]}
                 lineHeight="1.6"
-                marginBottom="1rem"
+                marginBottom={["1.25rem", "1.75rem", "2.25rem"]}
                 color="white"
             >
                 Share-A-Bite is a platform that enables clubs and organizations to share information about their surplus food with hungry students at the University of Washington Seattle. By facilitating this exchange, Share-A-Bite not only helps address food insecurity among students but also contributes to the reduction of food waste.
             </Text>
-            </Flex>
 
-            <Flex direction="column">
             <Text
                 as="h2"
                 textAlign="left"
-                fontSize="1.7rem"
-                marginBottom="1rem"
+                fontSize={["1.25rem", "1.75rem", "1.7rem"]}
+                marginBottom={["1.25rem", "1.75rem", "2.25rem"]}
                 color="white"
             >
                 How do I use it?
@@ -63,9 +62,9 @@ const About = () => {
             <Text
                 as="p"
                 textAlign="left"
-                fontSize="1.2rem"
+                fontSize={["0.8rem", "1rem", "1.2rem"]}
                 lineHeight="1.6"
-                marginBottom="2rem"
+                marginBottom={["1.25rem", "1.75rem", "2.25rem"]}
                 color="white"
             >
                 1. Log in using your UW netID <br />
