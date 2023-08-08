@@ -112,21 +112,28 @@ Complete: Issue #10
 # Post Food
 
 **CP.1: Create Post Page:** The system must provide a "Create Post" page where users can initiate a new post.
+Complete: Issue #16
 
 **CP.2: Image Upload:** The "Create Post" page must have a mechanism for users to upload an image or multiple images. This action is mandatory for post-creation.
+Complete: Issue #45
 
 **CP.3: Image Validation:** The system should verify the validity of the uploaded image file(s) before accepting the upload.
+Complete: Issue #14
 
 **CP.4: Add Location:** The "Create Post" page must provide an "Add Location" option that triggers an input field for users to add a location to their post. This field is mandatory.
+Complete: Issue #13
 
 **CP.5: Include Caption:** The "Create Post" page must provide an "Include Caption" option that triggers a text box for users to add a caption to their post. The field is mandatory.
+Complete: Issue #15
 
 **CP.6: Error Handling:** The system should display an error message when a mandatory field is not filled or invalid.
+Complete: Issue #10
 
 **CP.7: Post Button:** The "Create Post" page must have a green "Post" button which becomes active only when all mandatory fields are filled and valid.
+Complete: Issue #16
 
 **CP.8: Successful Post Creation:** Upon successful post creation, the system must direct the user to the "Feed" page.
-
+Complete: Issue #17
 # Feed
 
 **F.1: Feed Page:** The system must provide a "Feed" page where users can view all posts. complete issue #17
