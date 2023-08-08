@@ -51,12 +51,16 @@
 # Login Error
 
 **LE.1: Login Prompt:** Once users click on the "Log-in" button, then users will be prompted to log in with their UW NetID.
+Completed: Issue #12
 
-**LE.2: Login Screen:** The screen will be the same as all UW-related things that ask for your UW NetID.
+**LE.2: Login Screen:** The screen will be the same as all UW-related things that ask for your UW NetID. 
+Completed: Issue #18
 
 **LE.3: Navigation Bar:** Logo on the far right, home, about page, log-in buttons.
+Completed: Issue #11
 
 **LE.4: Error Message:** If the user enters the wrong login information or uses a non-UW email, the sign-in process doesn’t render when clicked. It will give users an error message below the Washington watermark that has a purple “W” over the login text box where you enter the email/NetID and password information. This error will say "Please sign in with your UW NetID".
+Completed: Issue #10
 
 # Post Food Error: Missing Location
 
