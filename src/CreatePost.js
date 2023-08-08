@@ -1,12 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import locations from "./data/locations.json";
-import {
-  collection,
-  addDoc,
-  serverTimestamp,
-  getDoc,
-  doc,
-} from "@firebase/firestore";
+import { collection, addDoc, serverTimestamp } from "@firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "@firebase/storage";
 import { db, storage } from "./firebase";
 import { useNavigate } from "react-router-dom";
@@ -22,29 +16,10 @@ import {
 } from "@aws-amplify/ui-react";
 import { FaLocationDot } from "react-icons/fa6";
 import "@aws-amplify/ui-react/styles.css";
-import { AuthContext } from "./AuthContext";
 
 function CreatePost() {
   const { tokens } = useTheme();
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
-
-  const fetchUserDetails = async (uid) => {
-    const userRef = doc(db, "users", uid);
-    try {
-      const userSnapshot = await getDoc(userRef);
-
-      if (!userSnapshot.exists()) {
-        console.error("User not found in the database!");
-        return null;
-      }
-
-      return userSnapshot.data();
-    } catch (error) {
-      console.error("Error fetching user:", error);
-      return null;
-    }
-  };
 
   //Add location
   const [location, setLocation] = useState(null);
@@ -124,8 +99,7 @@ function CreatePost() {
 
   //Post button
   const [errors, setErrors] = useState({});
-  const handlePost = async () => {
-    const userDetails = await fetchUserDetails(user.uid);
+  const handlePost = () => {
     // Check if all fields are filled out
     if (!location || imageArray.length === 0 || !caption) {
       // Set error messages
@@ -145,7 +119,6 @@ function CreatePost() {
         imageArray: imageArray,
         caption: caption,
         timestamp: serverTimestamp(),
-        uid: user.uid, // the user's UID
       }).catch((error) => {
         alert(error.message);
       });

@@ -41,7 +41,7 @@ const Login = () => {
         }
         // Redirect after everything is done
         navigate("/home");
-        //window.location.reload();
+        window.location.reload();
       }
     } catch (error) {
       alert(error.message);

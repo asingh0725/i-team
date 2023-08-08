@@ -5,6 +5,4 @@ import { createContext } from "react";
 export const AuthContext = createContext({
   user: null,
   isLoggedIn: false,
-  dataLoaded: { navBar: false, feed: false },
-  setDataLoaded: () => {},
 });
