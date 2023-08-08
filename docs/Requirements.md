@@ -65,14 +65,18 @@ Completed: Issue #10
 # Post Food Error: Missing Location
 
 **Pl.1: Navigation Bar:** Logo on the far right, home, create post, and about buttons.
-
+ Completed: Issue #11
+ 
 **Pl.2: Create Post Prompt:** On click of "create post", it prompts users to create a post which requires adding location, photo, caption.
+Complete: Issue #16
 
 **Pl.3: Location Box:** Under the location button, includes a box with a button that prompts users to upload their image on click.
-
+Complete: Issue #14
 **Pl.4: Image Box:** Under the image box, includes a button that prompts users to enter a caption on click, and to the right of this button is a green button that prompts users to post after clicking it.
+Complete: Issue #15 and #16
 
 **Pl.5: Error Message:** If the user tries to post without including a location, a brown error message appears on the body of the page that warns users to add a location.
+Complete: Issue #10
 
 # Post Food Error: Missing Image
 
