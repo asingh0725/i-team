@@ -175,7 +175,8 @@ function CreatePost() {
       justifyContent="center"
       alignItems="center"
       width={"100%"}
-      padding={"3rem"}
+      padding={["1.5rem", "1.75rem", "3rem"]}
+      minHeight="100vh"
     >
       <Flex
         direction="column"
@@ -184,8 +185,8 @@ function CreatePost() {
         alignContent="center"
         wrap="nowrap"
         gap="2rem"
-        padding={"3rem"}
-        width={"50%"}
+        padding={["1.5rem", "1.75rem", "3rem"]}
+        width={"55rem"}
       >
         <Flex
           direction={"row"}
@@ -196,6 +197,7 @@ function CreatePost() {
         >
           <FaLocationDot size={24}></FaLocationDot>
           <Autocomplete
+            fontSize={["1.25rem", "1.5rem", "1.75rem"]}
             style={{ borderWidth: 0 }}
             label="Locations across UW campus"
             backgroundColor={tokens.colors.white}
@@ -219,7 +221,7 @@ function CreatePost() {
             <Text
               variation="error"
               as="em"
-              fontSize={"1.5em"}
+              fontSize={["1.25rem", "1.5rem", "1.75rem"]}
               color={tokens.colors.white}
             >
               {errors.location}
@@ -248,10 +250,12 @@ function CreatePost() {
             />
             <Button
               variation="primary"
-              size="large"
-              borderRadius={tokens.radii.large}
+              size="small"
+              borderRadius={tokens.radii.medium}
               onClick={handleUploadClick}
-              width={"50%"}
+              height={["2.725rem", "3.125rem","4.125rem"]}
+              width={["4.125rem", "5.725rem","6.125rem"]}
+              fontSize={["0.45rem", "0.7rem","1rem"]}
             >
               Upload now
             </Button>
@@ -259,7 +263,7 @@ function CreatePost() {
               <Text
                 variation="error"
                 as="em"
-                fontSize={"1.5em"}
+                fontSize={["0.3rem", "0.7rem","1rem"]}
                 color={tokens.colors.purple}
               >
                 {errors.image}
@@ -291,14 +295,21 @@ function CreatePost() {
           <Text
             variation="error"
             as="em"
-            fontSize={"1.5em"}
+            fontSize={["1.25rem", "1.35rem", "1.5em"]}
             color={tokens.colors.white}
           >
             {errors.caption}
           </Text>
         )}
         <Flex direction="row-reverse" alignItems="flex-end" width={"100%"}>
-          <Button variation="primary" onClick={handlePost} width={"30%"}>
+          <Button
+          borderRadius={tokens.radii.medium}
+          variation="primary"
+          onClick={handlePost}
+          height={["1.725rem", "2.125rem","3.125rem"]}
+          width={["3.125rem", "3.725rem","4.125rem"]}
+          fontSize={["0.45rem", "0.7rem","1rem"]}
+          >
             Post
           </Button>
         </Flex>
