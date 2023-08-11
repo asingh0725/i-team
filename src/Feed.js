@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Flex, useTheme, Pagination } from "@aws-amplify/ui-react";
+import { Flex, useTheme, Pagination, View } from "@aws-amplify/ui-react";
 import { useNavigate } from "react-router-dom";
 import "@aws-amplify/ui-react/styles.css";
 import { Post } from "./Post";
@@ -48,13 +48,22 @@ export function Feed(props) {
               alignItems="center"
               width={["100%", "80%", "60%"]}
               gap="1rem"
-              //onClick={handleDetails}
             >
-              <Post
-                post={post}
-                handleDetails={handleDetails}
-                showButton={true}
-              />
+              <View
+                as="div"
+                width={{ base: "100%", large: "80%" }}
+                padding="1rem"
+                borderRadius="6px"
+                border="1px solid var(--amplify-colors-black)"
+                boxShadow="3px 3px 5px 6px var(--amplify-colors-neutral-60)"
+                backgroundColor={tokens.colors.green}
+              >
+                <Post
+                  post={post}
+                  handleDetails={handleDetails}
+                  showButton={true}
+                />
+              </View>
             </Flex>
           );
         })}
