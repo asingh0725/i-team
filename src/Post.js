@@ -1,15 +1,20 @@
 import React from "react";
-import { Flex, useTheme, Card, Image, Text } from "@aws-amplify/ui-react";
+import {
+  Flex,
+  useTheme,
+  Card,
+  Image,
+  Text,
+  Button,
+} from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import { FaLocationDot } from "react-icons/fa6";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
-export function Post(props) {
+export function Post({ post, handleDetails, showButton }) {
   const { tokens } = useTheme();
-  const post = props.post;
   const userProfileImage = post.user?.profileImage;
-  const handleClickPost = () => {};
 
   if (!post) {
     return <div>Error: Post data is not available.</div>;
@@ -35,7 +40,6 @@ export function Post(props) {
       width="100%"
       height="50%"
       key={post.id}
-      onClick={handleClickPost}
     >
       <Flex direction={"row"}>
         <Image
@@ -46,7 +50,7 @@ export function Post(props) {
           borderRadius={"50%"}
         />
         <Flex direction={"column"}>
-          <Flex direction={"row"}>
+          <Flex direction={"row"} alignItems={"center"}>
             <FaLocationDot size={24} color="white" />
             <Text
               color={tokens.colors.white}
@@ -54,6 +58,11 @@ export function Post(props) {
             >
               {post.location}
             </Text>
+            {showButton && (
+              <Button variation="warning" onClick={handleDetails}>
+                Details
+              </Button>
+            )}
           </Flex>
           <Carousel
             width="100%"
@@ -100,5 +109,3 @@ export function Post(props) {
     </Card>
   );
 }
-
-export default Post;

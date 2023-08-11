@@ -48,9 +48,13 @@ export function Feed(props) {
               alignItems="center"
               width={["100%", "80%", "60%"]}
               gap="1rem"
-              onClick={handleDetails}
+              //onClick={handleDetails}
             >
-              <Post post={post} />
+              <Post
+                post={post}
+                handleDetails={handleDetails}
+                showButton={true}
+              />
             </Flex>
           );
         })}
@@ -70,5 +74,3 @@ export function Feed(props) {
     </Flex>
   );
 }
-
-export default Feed;

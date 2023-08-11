@@ -38,50 +38,50 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const fetchUserDetails = async (uid) => {
-      const userRef = doc(db, "users", uid);
-      const userSnapshot = await getDoc(userRef);
-      return userSnapshot.exists() ? userSnapshot.data() : null;
-    };
+    const fetchData = async () => {
+      const fetchUserDetails = async (uid) => {
+        const userRef = doc(db, "users", uid);
+        const userSnapshot = await getDoc(userRef);
+        return userSnapshot.exists() ? userSnapshot.data() : null;
+      };
+      const fetchPosts = async () => {
+        const postsCollection = collection(db, "posts");
+        const postSnapshot = await getDocs(postsCollection);
+        const uidSet = new Set(postSnapshot.docs.map((doc) => doc.data().uid));
+        const userDetailsMap = {};
 
-    const fetchPosts = async () => {
-      const postsCollection = collection(db, "posts");
-      const postSnapshot = await getDocs(postsCollection);
-      const uidSet = new Set(postSnapshot.docs.map((doc) => doc.data().uid));
-      const userDetailsMap = {};
-
-      for (let uid of uidSet) {
-        const userDetails = await fetchUserDetails(uid);
-        userDetailsMap[uid] = userDetails;
-      }
-
-      const postList = postSnapshot.docs.map((doc) => {
-        const postData = doc.data();
-        return { ...postData, user: userDetailsMap[postData.uid] };
-      });
-      setUserMap(userDetailsMap);
-      setPosts(postList);
-    };
-
-    fetchPosts();
-
-    const fetchComments = async () => {
-      const commentsCollection = collection(db, "comments");
-      const commentsSnapshot = await getDocs(commentsCollection);
-      const commentsData = {};
-
-      commentsSnapshot.docs.forEach((doc) => {
-        const commentData = doc.data();
-        if (!commentsData[commentData.postId]) {
-          commentsData[commentData.postId] = [];
+        for (let uid of uidSet) {
+          const userDetails = await fetchUserDetails(uid);
+          userDetailsMap[uid] = userDetails;
         }
-        commentsData[commentData.postId].push(commentData);
-      });
 
-      setComments(commentsData);
+        const postList = postSnapshot.docs.map((doc) => {
+          const postData = doc.data();
+          return { ...postData, user: userDetailsMap[postData.uid] };
+        });
+        setUserMap(userDetailsMap);
+        setPosts(postList);
+      };
+      await fetchPosts();
+      const fetchComments = async () => {
+        const commentsCollection = collection(db, "comments");
+        const commentsSnapshot = await getDocs(commentsCollection);
+        const commentsData = {};
+
+        commentsSnapshot.docs.forEach((doc) => {
+          const commentData = doc.data();
+          if (!commentsData[commentData.postId]) {
+            commentsData[commentData.postId] = [];
+          }
+          commentsData[commentData.postId].push(commentData);
+        });
+
+        setComments(commentsData);
+      };
+
+      await fetchComments();
     };
-
-    fetchComments();
+    fetchData();
   }, []);
 
   return (
@@ -113,8 +113,7 @@ function App() {
                 <Routes>
                   <Route path="/about" element={<About />} />
                   <Route path="/create-post" element={<CreatePost />} />
-                  <Route path="/home" element={<Feed posts={posts} />} />
-                  {posts.length > 0 && userMap && comments !== null ? ( // Add this condition
+                  {posts.length > 0 && userMap && comments !== null && (
                     <Route
                       path="/home/:postId"
                       element={
@@ -122,10 +121,13 @@ function App() {
                           posts={posts}
                           userMap={userMap}
                           comments={comments}
+                          currentUser={currentUser}
                         />
                       }
                     />
-                  ) : null}
+                  )}
+
+                  <Route path="/home" element={<Feed posts={posts} />} />
                   <Route path="/" element={<Feed posts={posts} />} />
                 </Routes>
               </div>
