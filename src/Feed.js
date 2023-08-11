@@ -58,7 +58,6 @@ function Feed() {
       wrap="nowrap"
       gap="2rem"
       padding={"3rem"}
-      minHeight="100vh"
       width={"100%"}
       height={"100%"}
     >
@@ -66,40 +65,31 @@ function Feed() {
         const userProfileImage = post.user?.profileImage;
         return (
           <Card
-            justifyContent="center"
-            alignItems="center"
             variation="default"
             backgroundColor={tokens.colors.transparent}
             width={"50%"}
-            height={"50%"}
             key={post.id}
           >
             <Flex direction={"row"}>
               <Image
-                objectFit="initial"
-                height={["2.125rem", "5.125rem","6rem"]}
-                width={["2.125rem", "5.125rem","6rem"]}
+                width="15%"
+                height="15%"
                 src={userProfileImage}
                 borderRadius={"50%"}
               />
               <Flex direction={"column"}>
                 <Flex direction={"row"}>
                   <FaLocationDot size={24} />
-                  <Text
-                  color={tokens.colors.white}
-                  fontSize={["1.15rem", "1.2rem", "1.25em"]}
-                  >
-                    {post.location}
-                  </Text>
+                  <Text color={tokens.colors.white}>{post.location}</Text>
                 </Flex>
-                <Carousel width="100%" height="100%">
+                <Carousel width={"100%"} height="25vw">
                   {post.imageArray.map((image, index) => (
                     <div key={index}>
-                      <Image src={image} width={"55vh"} height={"25vw"} borderRadius={tokens.radii.large}/>
+                      <Image src={image} width={"86%"} height={"25vw"} />
                     </div>
                   ))}
                 </Carousel>
-                <Text color={tokens.colors.white} alignSelf={"flex-start"} fontSize={["0.8rem", "1.15rem", "1.2em"]}>
+                <Text color={tokens.colors.white} alignSelf={"flex-start"}>
                   {post.caption}
                 </Text>
               </Flex>

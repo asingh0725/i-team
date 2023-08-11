@@ -28,7 +28,7 @@ const Home = () => {
         <Text
           color="#ffffff"
           fontFamily='"Encode Sans-Regular", Helvetica'
-          fontSize={['1.5rem', '2.25rem', '3.125rem']}
+          fontSize="3.125rem"
           fontWeight="400"
           letterSpacing="0.125rem"
           marginBottom="1.25rem"
