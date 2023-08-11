@@ -20,12 +20,12 @@ const NavBarNotLoggedIn = () => {
 
   return (
     <Flex
-    direction="row"
-    justifyContent="space-between"
-    alignItems="center"
-    padding="1.25rem"
-    backgroundColor="#c0c0c0"
-    height={["2.125rem","3.125rem","4.125rem"]} // the responsiveness for the mobile, tablet, and desktop
+      direction="row"
+      justifyContent="space-between"
+      alignItems="center"
+      padding="1.25rem"
+      backgroundColor="#c0c0c0"
+      height={["2.125rem", "3.125rem", "4.125rem"]} // the responsiveness for the mobile, tablet, and desktop
     >
       <Flex alignItems="center">
         <Link
@@ -39,38 +39,35 @@ const NavBarNotLoggedIn = () => {
           <Image
             src="img/header_logo.png"
             alt="Logo"
-            style={{marginRight: "0.625rem"}}
-            height={["2.125rem","3.125rem","4.125rem"]}
+            style={{ marginRight: "0.625rem" }}
+            height={["2.125rem", "3.125rem", "4.125rem"]}
           />
           <Text
-          color="#fff"
-          fontSize={['1.2rem', '1.4rem', '1.6rem', '1.8rem', '2rem']}
-          fontWeight="bold"
+            color="#fff"
+            fontSize={["1.2rem", "1.4rem", "1.6rem", "1.8rem", "2rem"]}
+            fontWeight="bold"
           >
             SHARE-A-BITE
           </Text>
         </Link>
       </Flex>
-      <Flex 
-        direction="row"
-        gap="1.25rem"
-      >
+      <Flex direction="row" gap="1.25rem">
         <>
           <Link to="/home" style={{ color: "#fff", textDecoration: "none" }}>
-          <Text
-          color="#fff"
-          fontSize={['1rem', '1.4rem', '1.6rem', '1.8rem', '2rem']}
-          >
-            Home
-          </Text>
+            <Text
+              color="#fff"
+              fontSize={["1rem", "1.4rem", "1.6rem", "1.8rem", "2rem"]}
+            >
+              Home
+            </Text>
           </Link>
           <Link to="/about" style={{ color: "#fff", textDecoration: "none" }}>
-          <Text
-          color="#fff"
-          fontSize={['1rem', '1.4rem', '1.6rem', '1.8rem', '2rem']}
-          >
-            About
-          </Text>
+            <Text
+              color="#fff"
+              fontSize={["1rem", "1.4rem", "1.6rem", "1.8rem", "2rem"]}
+            >
+              About
+            </Text>
           </Link>
         </>
       </Flex>
@@ -99,14 +96,6 @@ const NavBarLoggedIn = () => {
   const handleUploadClick = () => {
     fileInput.current.click();
   };
-
-  // const { dataLoaded, setDataLoaded } = useContext(AuthContext);
-
-  // useEffect(() => {
-  //   if (userImgURL !== null) {
-  //     setDataLoaded((prev) => ({ ...prev, navBar: true }));
-  //   }
-  // }, [userImgURL]);
 
   useEffect(() => {
     const fetchUserImage = async () => {
@@ -157,7 +146,7 @@ const NavBarLoggedIn = () => {
       alignItems="center"
       padding="1.25rem"
       backgroundColor="#c0c0c0"
-      height={["2.125rem","3.125rem","4.125rem"]}
+      height={["2.125rem", "3.125rem", "4.125rem"]}
     >
       <Flex alignItems="center">
         <Link
@@ -171,52 +160,64 @@ const NavBarLoggedIn = () => {
           <Image
             src="img/header_logo.png"
             alt="Logo"
-            style={{marginRight: "0.625rem"}}
-            height={["2.125rem","3.125rem","4.125rem"]}
+            style={{ marginRight: "0.625rem" }}
+            height={["2.125rem", "3.125rem", "4.125rem"]}
           />
           <Text
-          color="#fff"
-          fontSize={['0.5rem', '1.2rem', '1.4rem']}
-          fontWeight="bold"
+            color="#fff"
+            fontSize={["0.5rem", "1.2rem", "1.4rem"]}
+            fontWeight="bold"
           >
             SHARE-A-BITE
           </Text>
         </Link>
       </Flex>
       <Flex direction="row" gap="1.25rem">
-        <Flex direction={"row"} alignItems={"center"} >
-          <Link
-            to={"/"}
-            style={{ textDecoration: "none" }}
-          >
-          <Text
-          color="#fff"
-          fontSize={['0.5rem', '1.2rem', '1.4rem', '1.6rem', '1.8rem', '2rem']}
-          >
-            Home
-          </Text>
+        <Flex direction={"row"} alignItems={"center"}>
+          <Link to={"/"} style={{ textDecoration: "none" }}>
+            <Text
+              color="#fff"
+              fontSize={[
+                "0.5rem",
+                "1.2rem",
+                "1.4rem",
+                "1.6rem",
+                "1.8rem",
+                "2rem",
+              ]}
+            >
+              Home
+            </Text>
           </Link>
-          <Link
-            to="/create-post"
-            style={{ textDecoration: "none" }}
-          >
-          <Text
-          color="#fff"
-          fontSize={['0.5rem', '1.2rem', '1.4rem', '1.6rem', '1.8rem', '2rem']}
-          >
-            Create Post
-          </Text>
+          <Link to="/create-post" style={{ textDecoration: "none" }}>
+            <Text
+              color="#fff"
+              fontSize={[
+                "0.5rem",
+                "1.2rem",
+                "1.4rem",
+                "1.6rem",
+                "1.8rem",
+                "2rem",
+              ]}
+            >
+              Create Post
+            </Text>
           </Link>
-          <Link
-            to="/about"
-            style={{ textDecoration: "none" }}
-          >
-          <Text
-          color="#fff"
-          fontSize={['0.5rem', '1.2rem', '1.4rem', '1.6rem', '1.8rem', '2rem']}
-          >
-            About
-          </Text>
+          <Link to="/about" style={{ textDecoration: "none" }}>
+            <Text
+              color="#fff"
+              fontSize={[
+                "0.5rem",
+                "1.2rem",
+                "1.4rem",
+                "1.6rem",
+                "1.8rem",
+                "2rem",
+              ]}
+            >
+              About
+            </Text>
           </Link>
           <input
             type="file"
@@ -228,8 +229,8 @@ const NavBarLoggedIn = () => {
           <Button
             backgroundColor={tokens.colors.transparent}
             borderRadius={"50%"}
-            height={["2.125rem", "3.125rem","4rem"]}
-            width={["2.125rem", "3.125rem","4rem"]}
+            height={["2.125rem", "3.125rem", "4rem"]}
+            width={["2.125rem", "3.125rem", "4rem"]}
             onClick={handleUploadClick}
             padding={"0.3rem"}
           >
@@ -250,9 +251,9 @@ const NavBarLoggedIn = () => {
             variation="warning"
             justifyContent={"center"}
             onClick={handleLogout}
-            height={["1.725rem", "2.125rem","2.725rem"]}
-            width={["3.125rem", "3.725rem","6.125rem"]}
-            fontSize={["0.65rem", "0.7rem","1rem"]}
+            height={["1.725rem", "2.125rem", "2.725rem"]}
+            width={["3.125rem", "3.725rem", "6.125rem"]}
+            fontSize={["0.65rem", "0.7rem", "1rem"]}
           >
             Log Out
           </Button>

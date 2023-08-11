@@ -6,6 +6,7 @@ import {
   serverTimestamp,
   getDoc,
   doc,
+  updateDoc,
 } from "@firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "@firebase/storage";
 import { db, storage } from "./firebase";
@@ -140,17 +141,27 @@ function CreatePost() {
       setErrors({});
       // post code here
       console.log("Posting: ", { location, imageArray, caption });
-      addDoc(collection(db, "posts"), {
-        location: location,
-        imageArray: imageArray,
-        caption: caption,
-        timestamp: serverTimestamp(),
-        uid: user.uid, // the user's UID
-      }).catch((error) => {
+      try {
+        const postDocRef = await addDoc(collection(db, "posts"), {
+          id: "", // This will be set automatically by Firestore's document ID
+          location: location,
+          imageArray: imageArray,
+          caption: caption,
+          timestamp: serverTimestamp(),
+          uid: user.uid, // the user's UID
+        });
+
+        console.log("Post added with Firestore ID: ", postDocRef.id);
+
+        // Update the ID field with the generated Firestore ID
+        await updateDoc(doc(db, "posts", postDocRef.id), {
+          id: postDocRef.id,
+        });
+
+        navigate("/home");
+      } catch (error) {
         alert(error.message);
-      });
-      //addPost({ location, imageArray, caption });
-      navigate("/home");
+      }
     }
   };
 
@@ -171,11 +182,11 @@ function CreatePost() {
 
   return (
     <Flex
-      direction="row"
+      direction="column"
       justifyContent="center"
       alignItems="center"
-      width={"100%"}
-      padding={["1.5rem", "1.75rem", "3rem"]}
+      width="100%"
+      padding={["1.5rem", "1.75rem", "2rem", "2.25rem", "3rem"]}
       minHeight="100vh"
     >
       <Flex
@@ -184,9 +195,9 @@ function CreatePost() {
         alignItems="center"
         alignContent="center"
         wrap="nowrap"
-        gap="2rem"
-        padding={["1.5rem", "1.75rem", "3rem"]}
-        width={"55rem"}
+        gap={["1rem", "1.5rem", "2rem", "2.5rem"]}
+        padding={["1rem", "1.5rem", "2rem", "2.5rem"]}
+        width={["100%", "70%", "60%", "55%"]}
       >
         <Flex
           direction={"row"}
@@ -253,9 +264,9 @@ function CreatePost() {
               size="small"
               borderRadius={tokens.radii.medium}
               onClick={handleUploadClick}
-              height={["2.725rem", "3.125rem","4.125rem"]}
-              width={["4.125rem", "5.725rem","6.125rem"]}
-              fontSize={["0.45rem", "0.7rem","1rem"]}
+              height={["2.725rem", "3.125rem", "4.125rem"]}
+              width={["4.125rem", "5.725rem", "6.125rem"]}
+              fontSize={["0.45rem", "0.7rem", "1rem"]}
             >
               Upload now
             </Button>
@@ -263,7 +274,7 @@ function CreatePost() {
               <Text
                 variation="error"
                 as="em"
-                fontSize={["0.3rem", "0.7rem","1rem"]}
+                fontSize={["0.3rem", "0.7rem", "1rem"]}
                 color={tokens.colors.purple}
               >
                 {errors.image}
@@ -303,12 +314,12 @@ function CreatePost() {
         )}
         <Flex direction="row-reverse" alignItems="flex-end" width={"100%"}>
           <Button
-          borderRadius={tokens.radii.medium}
-          variation="primary"
-          onClick={handlePost}
-          height={["1.725rem", "2.125rem","3.125rem"]}
-          width={["3.125rem", "3.725rem","4.125rem"]}
-          fontSize={["0.45rem", "0.7rem","1rem"]}
+            borderRadius={tokens.radii.medium}
+            variation="primary"
+            onClick={handlePost}
+            height={["1.725rem", "2.125rem", "2.5rem", "2.75rem", "3.125rem"]}
+            width={["3.125rem", "3.725rem", "4rem", "4.125rem", "4.25rem"]}
+            fontSize={["0.45rem", "0.6rem", "0.75rem", "0.85rem", "1rem"]}
           >
             Post
           </Button>
