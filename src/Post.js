@@ -60,7 +60,7 @@ export function Post({ post, handleDetails, showButton }) {
             </Text>
             {showButton && (
               <Button variation="warning" onClick={handleDetails}>
-                Details
+                Comments
               </Button>
             )}
           </Flex>
