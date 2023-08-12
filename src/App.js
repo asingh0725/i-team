@@ -1,13 +1,8 @@
-import React, { useState, useEffect, useContext, useReducer } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase";
-
+import { auth, db } from "./firebase";
+import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 import { NavBarLoggedIn, NavBarNotLoggedIn } from "./Navigation";
 import CreatePost from "./CreatePost";
 import "./App.css";
@@ -16,15 +11,17 @@ import About from "./About";
 import Home from "./Home";
 import Register from "./Register";
 import Login from "./Login";
-import Feed from "./Feed";
-
+import { Feed } from "./Feed";
+import { PostPage } from "./PostPage";
 import { AuthContext } from "./AuthContext";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [dataLoaded, setDataLoaded] = useState({ navBar: false, feed: false });
+  const [posts, setPosts] = useState([]);
+  const [userMap, setUserMap] = useState({});
+  const [comments, setComments] = useState(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -37,8 +34,54 @@ function App() {
       }
       setLoading(false);
     });
-
     return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const fetchUserDetails = async (uid) => {
+        const userRef = doc(db, "users", uid);
+        const userSnapshot = await getDoc(userRef);
+        return userSnapshot.exists() ? userSnapshot.data() : null;
+      };
+      const fetchPosts = async () => {
+        const postsCollection = collection(db, "posts");
+        const postSnapshot = await getDocs(postsCollection);
+        const uidSet = new Set(postSnapshot.docs.map((doc) => doc.data().uid));
+        const userDetailsMap = {};
+
+        for (let uid of uidSet) {
+          const userDetails = await fetchUserDetails(uid);
+          userDetailsMap[uid] = userDetails;
+        }
+
+        const postList = postSnapshot.docs.map((doc) => {
+          const postData = doc.data();
+          return { ...postData, user: userDetailsMap[postData.uid] };
+        });
+        setUserMap(userDetailsMap);
+        setPosts(postList);
+      };
+      await fetchPosts();
+      const fetchComments = async () => {
+        const commentsCollection = collection(db, "comments");
+        const commentsSnapshot = await getDocs(commentsCollection);
+        const commentsData = {};
+
+        commentsSnapshot.docs.forEach((doc) => {
+          const commentData = doc.data();
+          if (!commentsData[commentData.postId]) {
+            commentsData[commentData.postId] = [];
+          }
+          commentsData[commentData.postId].push(commentData);
+        });
+
+        setComments(commentsData);
+      };
+
+      await fetchComments();
+    };
+    fetchData();
   }, []);
 
   return (
@@ -46,8 +89,6 @@ function App() {
       value={{
         user: currentUser,
         isLoggedIn: currentUser && currentUser.emailVerified,
-        dataLoaded,
-        setDataLoaded,
       }}
     >
       <Router>
@@ -72,8 +113,22 @@ function App() {
                 <Routes>
                   <Route path="/about" element={<About />} />
                   <Route path="/create-post" element={<CreatePost />} />
-                  <Route path="/home" element={<Feed />} />
-                  <Route path="/" element={<Feed />} />
+                  {posts.length > 0 && userMap && comments !== null && (
+                    <Route
+                      path="/home/:postId"
+                      element={
+                        <PostPage
+                          posts={posts}
+                          userMap={userMap}
+                          comments={comments}
+                          currentUser={currentUser}
+                        />
+                      }
+                    />
+                  )}
+
+                  <Route path="/home" element={<Feed posts={posts} />} />
+                  <Route path="/" element={<Feed posts={posts} />} />
                 </Routes>
               </div>
             </>

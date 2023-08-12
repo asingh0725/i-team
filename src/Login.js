@@ -37,6 +37,7 @@ const Login = () => {
             email: loggedUser.email,
             uid: loggedUser.uid,
             timestamp: serverTimestamp(),
+            profileImage: null,
           });
         }
         // Redirect after everything is done
