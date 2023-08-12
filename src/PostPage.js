@@ -104,7 +104,11 @@ export function PostPage({ posts, userMap, comments, currentUser }) {
             >
               <Flex direction="row" gap="0.5rem" alignItems="center">
                 <Image
-                  src={comment.profileImage}
+                  src={
+                    comment.profileImage
+                      ? comment.profileImage
+                      : "./img/sample_user.png"
+                  }
                   width="40px"
                   height="40px"
                   borderRadius="50%"
