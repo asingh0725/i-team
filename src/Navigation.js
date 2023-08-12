@@ -13,9 +13,9 @@ import { ref, uploadBytesResumable, getDownloadURL } from "@firebase/storage";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { auth, storage, db } from "./firebase";
 import { signOut } from "firebase/auth";
+import { FaCirclePlus } from "react-icons/fa6";
 
 const NavBarNotLoggedIn = () => {
-  // Use the AuthContext to get the current user
   const { tokens } = useTheme();
 
   return (
@@ -82,12 +82,13 @@ const NavBarLoggedIn = () => {
   const { user, isLoggedIn, forceUpdate } = useContext(AuthContext);
   const [userImgURL, setUserImgURL] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      navigate("/home"); // Redirect to home page after logging out
+      navigate("/home");
     } catch (error) {
       console.error("Error signing out: ", error.message);
     }
@@ -227,25 +228,50 @@ const NavBarLoggedIn = () => {
             accept="image/*"
           />
           <Button
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
             backgroundColor={tokens.colors.transparent}
             borderRadius={"50%"}
             height={["2.125rem", "3.125rem", "4rem"]}
             width={["2.125rem", "3.125rem", "4rem"]}
             onClick={handleUploadClick}
             padding={"0.3rem"}
+            position="relative" // to position the overlay and icon
           >
-            <Image
-              borderRadius={"50%"}
-              height={["100%"]}
-              width={["100%"]}
-              src={
-                isLoading
-                  ? "img/sample_user.png"
-                  : userImgURL
-                  ? userImgURL
-                  : "img/sample_user.png"
-              }
-            />
+            {isHovered ? (
+              <>
+                <FaCirclePlus size={"inherit"} color="white" />
+                <span
+                  style={{
+                    position: "absolute",
+                    top: "40px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    backgroundColor: "#000",
+                    color: "#fff",
+                    padding: "2px 5px",
+                    borderRadius: "5px",
+                    fontSize: "12px",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  Upload/Update Image
+                </span>
+              </>
+            ) : (
+              <Image
+                borderRadius={"50%"}
+                height={["100%"]}
+                width={["100%"]}
+                src={
+                  isLoading
+                    ? "img/sample_user.png"
+                    : userImgURL
+                    ? userImgURL
+                    : "img/sample_user.png"
+                }
+              />
+            )}
           </Button>
           <Button
             variation="warning"
