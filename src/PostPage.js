@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Post } from "./Post";
 import {
@@ -12,26 +12,47 @@ import {
   Card,
   View,
 } from "@aws-amplify/ui-react";
-import { collection, addDoc, serverTimestamp } from "@firebase/firestore";
+import {
+  collection,
+  addDoc,
+  doc,
+  serverTimestamp,
+  getDoc,
+} from "@firebase/firestore";
 import { db } from "./firebase";
 
 export function PostPage({ posts, userMap, comments, currentUser }) {
   const { postId } = useParams();
   const post = posts.find((post) => post.id === postId);
-  const userDetails = post ? userMap[post.uid] : null;
-  const userProfileImage = userDetails?.profileImage || "";
   const [comment, setComment] = useState("");
   const [postComments, setPostComments] = useState(comments[postId] || []);
-
   const [commentError, setCommentError] = useState(false);
+  useEffect(() => {
+    const fetchUserProfileImage = async () => {
+      try {
+        const userRef = doc(db, "users", currentUser.uid);
+        const userDetails = await getDoc(userRef);
 
+        if (userDetails.exists()) {
+          const userData = userDetails.data();
+          if (userData.profileImage) {
+            userMap[currentUser.uid].profileImage = userData.profileImage;
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    };
+
+    fetchUserProfileImage();
+  }, [currentUser.uid, db]);
   const handleCommentSubmit = async () => {
     if (comment.trim() !== "") {
       const newComment = {
         content: comment,
         postId: postId,
         uid: currentUser.uid,
-        profileImage: userMap[currentUser.uid]?.profileImage || "",
+        //profileImage: userMap[currentUser.uid]?.profileImage || "",
       };
 
       try {
@@ -60,7 +81,7 @@ export function PostPage({ posts, userMap, comments, currentUser }) {
     }
   };
 
-  if (!post || !userDetails) {
+  if (!post) {
     return <Loader variation="linear" />;
   }
 
@@ -105,8 +126,8 @@ export function PostPage({ posts, userMap, comments, currentUser }) {
               <Flex direction="row" gap="0.5rem" alignItems="center">
                 <Image
                   src={
-                    comment.profileImage
-                      ? comment.profileImage
+                    userMap[comment.uid]?.profileImage
+                      ? userMap[comment.uid].profileImage
                       : "./img/sample_user.png"
                   }
                   width="40px"

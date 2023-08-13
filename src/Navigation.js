@@ -1,16 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import {
-  Flex,
-  Text,
-  Button,
-  useTheme,
-  Image,
-  Link as AmplifyLink,
-} from "@aws-amplify/ui-react";
+import { Flex, Text, Button, useTheme, Image } from "@aws-amplify/ui-react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
 import { ref, uploadBytesResumable, getDownloadURL } from "@firebase/storage";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 import { auth, storage, db } from "./firebase";
 import { signOut } from "firebase/auth";
 import { FaCirclePlus } from "react-icons/fa6";
@@ -134,6 +127,7 @@ const NavBarLoggedIn = () => {
           console.log("File available at", downloadURL);
           setUserImgURL(downloadURL); // Update state here
           const userRef = doc(db, "users", user.uid);
+          console.log("userRef", userRef);
           setDoc(userRef, { profileImage: downloadURL }, { merge: true });
         });
       }
