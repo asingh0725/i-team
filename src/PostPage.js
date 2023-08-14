@@ -85,10 +85,13 @@ export function PostPage({ posts, userMap, comments, currentUser }) {
     }
   };
 
-  if (!post) {
+  if (!post || !userMap || !comments) {
     return <Loader variation="linear" />;
   }
 
+  const sortedPostComments = [...postComments].sort(
+    (a, b) => b.timestamp - a.timestamp
+  );
   return (
     <Flex
       direction={{ base: "column", large: "row" }}
@@ -115,8 +118,8 @@ export function PostPage({ posts, userMap, comments, currentUser }) {
         width={{ base: "100%", large: "50%" }}
         gap="2rem"
       >
-        {postComments ? (
-          postComments.map((comment, index) => (
+        {sortedPostComments ? (
+          sortedPostComments.map((comment, index) => (
             <View
               as="div"
               key={index}

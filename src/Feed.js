@@ -6,6 +6,7 @@ import { Post } from "./Post";
 
 export function Feed(props) {
   const posts = props.posts;
+  const sortedPosts = [...posts].sort((a, b) => b.timestamp - a.timestamp);
   const navigate = useNavigate();
   const { tokens } = useTheme();
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,7 +14,7 @@ export function Feed(props) {
   const postsPerPage = 3;
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
 
   const totalPages = Math.ceil(posts.length / postsPerPage);
 
