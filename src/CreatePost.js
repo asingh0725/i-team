@@ -159,7 +159,7 @@ function CreatePost() {
         });
 
         navigate("/home");
-        window.location.reload();
+        //window.location.reload();
       } catch (error) {
         alert(error.message);
       }

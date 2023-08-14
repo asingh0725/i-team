@@ -21,7 +21,13 @@ import {
 } from "@firebase/firestore";
 import { db } from "./firebase";
 
-export function PostPage({ posts, userMap, comments, currentUser }) {
+export function PostPage({
+  posts,
+  userMap,
+  comments,
+  currentUser,
+  updateUserMap,
+}) {
   const { postId } = useParams();
   const post = posts.find((post) => post.id === postId);
   const [comment, setComment] = useState("");
@@ -30,15 +36,43 @@ export function PostPage({ posts, userMap, comments, currentUser }) {
   useEffect(() => {
     const fetchUserProfileImage = async () => {
       try {
-        const userRef = doc(db, "users", currentUser.uid);
-        const userDetails = await getDoc(userRef);
+        // Fetching the profile image for the current user
+        const userRefForCurrentUser = doc(db, "users", currentUser.uid);
+        const userDetailsForCurrentUser = await getDoc(userRefForCurrentUser);
 
-        if (userDetails.exists()) {
-          const userData = userDetails.data();
-          if (userData.profileImage) {
-            console.log("user map", userMap);
-            userMap[currentUser.uid].profileImage = userData.profileImage;
-          } else {
+        if (userDetailsForCurrentUser.exists()) {
+          const userDataForCurrentUser = userDetailsForCurrentUser.data();
+          if (userDataForCurrentUser.profileImage) {
+            const updatedUserMapForCurrentUser = {
+              ...userMap,
+              [currentUser.uid]: {
+                ...userMap[currentUser.uid],
+                profileImage: userDataForCurrentUser.profileImage,
+              },
+            };
+            updateUserMap(updatedUserMapForCurrentUser);
+          }
+        }
+
+        // Fetching profile images for commenters
+        for (const comment of postComments) {
+          if (!userMap[comment.uid]?.profileImage) {
+            const userRefForCommenter = doc(db, "users", comment.uid);
+            const userDetailsForCommenter = await getDoc(userRefForCommenter);
+
+            if (userDetailsForCommenter.exists()) {
+              const userDataForCommenter = userDetailsForCommenter.data();
+              if (userDataForCommenter.profileImage) {
+                const updatedUserMapForCommenter = {
+                  ...userMap,
+                  [comment.uid]: {
+                    ...userMap[comment.uid],
+                    profileImage: userDataForCommenter.profileImage,
+                  },
+                };
+                updateUserMap(updatedUserMapForCommenter);
+              }
+            }
           }
         }
       } catch (error) {
@@ -47,9 +81,8 @@ export function PostPage({ posts, userMap, comments, currentUser }) {
     };
 
     fetchUserProfileImage();
-  }, [currentUser.uid, db]);
+  }, [currentUser.uid, db, userMap, updateUserMap, postComments]);
 
-  console.log("commentee's image", userMap[comment.uid]?.profileImage);
   const handleCommentSubmit = async () => {
     if (comment.trim() !== "") {
       const newComment = {
@@ -111,7 +144,12 @@ export function PostPage({ posts, userMap, comments, currentUser }) {
         border="1px solid var(--amplify-colors-black)"
         boxShadow="3px 3px 5px 6px var(--amplify-colors-neutral-60)"
       >
-        <Post post={post} showButton={false} />
+        <Post
+          post={post}
+          showButton={false}
+          userMap={userMap}
+          userProfileImage={userMap[post.uid]?.profileImage}
+        />
       </View>
       <Flex
         direction="column"

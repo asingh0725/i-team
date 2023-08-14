@@ -130,7 +130,7 @@ const NavBarLoggedIn = () => {
           const userRef = doc(db, "users", user.uid);
           await setDoc(userRef, { profileImage: downloadURL }, { merge: true });
 
-          window.location.reload();
+          //window.location.reload();
         } catch (error) {
           console.error(
             "Error getting download URL or updating Firestore:",

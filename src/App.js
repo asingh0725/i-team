@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "./firebase";
-import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import { collection, onSnapshot, doc, getDoc } from "firebase/firestore";
 import { NavBarLoggedIn, NavBarNotLoggedIn } from "./Navigation";
 import CreatePost from "./CreatePost";
 import "./App.css";
@@ -24,7 +24,7 @@ function App() {
   const [comments, setComments] = useState(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
       if (user) {
         setCurrentUser(user);
         setIsLoggedIn(true);
@@ -34,73 +34,49 @@ function App() {
       }
       setLoading(false);
     });
-    return () => unsubscribe();
-  }, []);
 
-  const fetchAllUsers = async () => {
-    const usersCollection = collection(db, "users");
-    const userSnapshot = await getDocs(usersCollection);
-    const userDetailsMap = {};
-
-    userSnapshot.docs.forEach((doc) => {
-      const userData = doc.data();
-      userDetailsMap[doc.id] = userData;
+    const postsCollection = collection(db, "posts");
+    const unsubscribePosts = onSnapshot(postsCollection, (snapshot) => {
+      const updatedPosts = snapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setPosts(updatedPosts);
     });
 
-    setUserMap(userDetailsMap);
-  };
+    const usersCollection = collection(db, "users");
+    const unsubscribeUsers = onSnapshot(usersCollection, (snapshot) => {
+      const userDetailsMap = {};
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const fetchUserDetails = async (uid) => {
-        const userRef = doc(db, "users", uid);
-        const userSnapshot = await getDoc(userRef);
-        return userSnapshot.exists() ? userSnapshot.data() : null;
-      };
+      snapshot.docs.forEach((doc) => {
+        const userData = doc.data();
+        userDetailsMap[doc.id] = userData;
+      });
 
-      const fetchPosts = async () => {
-        const postsCollection = collection(db, "posts");
-        const postSnapshot = await getDocs(postsCollection);
-        const uidSet = new Set(postSnapshot.docs.map((doc) => doc.data().uid));
-        const userDetailsMap = {};
+      setUserMap(userDetailsMap);
+    });
 
-        for (let uid of uidSet) {
-          const userDetails = await fetchUserDetails(uid);
-          userDetailsMap[uid] = userDetails;
+    const commentsCollection = collection(db, "comments");
+    const unsubscribeComments = onSnapshot(commentsCollection, (snapshot) => {
+      const commentsData = {};
+
+      snapshot.docs.forEach((doc) => {
+        const commentData = doc.data();
+        if (!commentsData[commentData.postId]) {
+          commentsData[commentData.postId] = [];
         }
+        commentsData[commentData.postId].push(commentData);
+      });
 
-        const postList = postSnapshot.docs.map((doc) => {
-          const postData = doc.data();
-          return { ...postData, user: userDetailsMap[postData.uid] };
-        });
+      setComments(commentsData);
+    });
 
-        setPosts(postList);
-      };
-
-      await fetchPosts();
-
-      const fetchComments = async () => {
-        const commentsCollection = collection(db, "comments");
-        const commentsSnapshot = await getDocs(commentsCollection);
-        const commentsData = {};
-
-        commentsSnapshot.docs.forEach((doc) => {
-          const commentData = doc.data();
-          if (!commentsData[commentData.postId]) {
-            commentsData[commentData.postId] = [];
-          }
-          commentsData[commentData.postId].push(commentData);
-        });
-
-        setComments(commentsData);
-      };
-
-      await fetchComments();
-
-      await fetchAllUsers();
+    return () => {
+      unsubscribeAuth();
+      unsubscribePosts();
+      unsubscribeUsers();
+      unsubscribeComments();
     };
-
-    fetchData();
   }, []);
 
   return (
@@ -141,12 +117,19 @@ function App() {
                           userMap={userMap}
                           comments={comments}
                           currentUser={currentUser}
+                          updateUserMap={(updatedMap) => setUserMap(updatedMap)}
                         />
                       }
                     />
                   )}
-                  <Route path="/home" element={<Feed posts={posts} />} />
-                  <Route path="/" element={<Feed posts={posts} />} />
+                  <Route
+                    path="/home"
+                    element={<Feed posts={posts} userMap={userMap} />}
+                  />
+                  <Route
+                    path="/"
+                    element={<Feed posts={posts} userMap={userMap} />}
+                  />
                 </Routes>
               </div>
             </>
