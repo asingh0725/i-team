@@ -44,7 +44,7 @@ function App() {
 
     userSnapshot.docs.forEach((doc) => {
       const userData = doc.data();
-      userDetailsMap[doc.id] = userData; // doc.id should be the uid
+      userDetailsMap[doc.id] = userData;
     });
 
     setUserMap(userDetailsMap);
@@ -97,7 +97,6 @@ function App() {
 
       await fetchComments();
 
-      // Fetch all users after fetching posts and comments
       await fetchAllUsers();
     };
 

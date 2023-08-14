@@ -18,7 +18,7 @@ const NavBarNotLoggedIn = () => {
       alignItems="center"
       padding="1.25rem"
       backgroundColor="#c0c0c0"
-      height={["2.125rem", "3.125rem", "4.125rem"]} // the responsiveness for the mobile, tablet, and desktop
+      height={["2.125rem", "3.125rem", "4.125rem"]}
     >
       <Flex alignItems="center">
         <Link
@@ -105,14 +105,13 @@ const NavBarLoggedIn = () => {
         setIsLoading(false);
       }
     };
-
     fetchUserImage();
   }, [user]);
   const handleFileChange = async (event) => {
-    const file = event.target.files;
-    console.log("File = ", file[0]);
-    const storageRef = ref(storage, "images/" + file[0].name);
-    const uploadTask = uploadBytesResumable(storageRef, file[0]);
+    const file = event.target.files[0];
+    const storageRef = ref(storage, "images/" + file.name);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -122,14 +121,22 @@ const NavBarLoggedIn = () => {
       (error) => {
         console.error("Upload failed:", error);
       },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+      async () => {
+        try {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
           console.log("File available at", downloadURL);
-          setUserImgURL(downloadURL); // Update state here
+          setUserImgURL(downloadURL); // Update local state here
+
           const userRef = doc(db, "users", user.uid);
-          console.log("userRef", userRef);
-          setDoc(userRef, { profileImage: downloadURL }, { merge: true });
-        });
+          await setDoc(userRef, { profileImage: downloadURL }, { merge: true });
+
+          window.location.reload();
+        } catch (error) {
+          console.error(
+            "Error getting download URL or updating Firestore:",
+            error
+          );
+        }
       }
     );
   };
