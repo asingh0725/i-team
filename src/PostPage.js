@@ -36,7 +36,9 @@ export function PostPage({ posts, userMap, comments, currentUser }) {
         if (userDetails.exists()) {
           const userData = userDetails.data();
           if (userData.profileImage) {
+            console.log("user map", userMap);
             userMap[currentUser.uid].profileImage = userData.profileImage;
+          } else {
           }
         }
       } catch (error) {
@@ -46,6 +48,8 @@ export function PostPage({ posts, userMap, comments, currentUser }) {
 
     fetchUserProfileImage();
   }, [currentUser.uid, db]);
+
+  console.log("commentee's image", userMap[comment.uid]?.profileImage);
   const handleCommentSubmit = async () => {
     if (comment.trim() !== "") {
       const newComment = {
@@ -176,6 +180,7 @@ export function PostPage({ posts, userMap, comments, currentUser }) {
             marginBottom="1rem"
             width="100%"
             rows={4}
+            style={{ color: "white" }}
           />
           {commentError && (
             <Text

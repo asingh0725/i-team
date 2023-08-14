@@ -46,7 +46,7 @@ export function Post({ post, handleDetails, showButton }) {
           objectFit="initial"
           height={["2.125rem", "5.125rem", "6rem"]}
           width={["2.125rem", "5.125rem", "6rem"]}
-          src={userProfileImage}
+          src={userProfileImage ? userProfileImage : "img/sample_user.png"}
           borderRadius={"50%"}
         />
         <Flex direction={"column"}>

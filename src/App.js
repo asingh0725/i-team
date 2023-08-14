@@ -37,6 +37,19 @@ function App() {
     return () => unsubscribe();
   }, []);
 
+  const fetchAllUsers = async () => {
+    const usersCollection = collection(db, "users");
+    const userSnapshot = await getDocs(usersCollection);
+    const userDetailsMap = {};
+
+    userSnapshot.docs.forEach((doc) => {
+      const userData = doc.data();
+      userDetailsMap[doc.id] = userData; // doc.id should be the uid
+    });
+
+    setUserMap(userDetailsMap);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const fetchUserDetails = async (uid) => {
@@ -44,6 +57,7 @@ function App() {
         const userSnapshot = await getDoc(userRef);
         return userSnapshot.exists() ? userSnapshot.data() : null;
       };
+
       const fetchPosts = async () => {
         const postsCollection = collection(db, "posts");
         const postSnapshot = await getDocs(postsCollection);
@@ -59,10 +73,12 @@ function App() {
           const postData = doc.data();
           return { ...postData, user: userDetailsMap[postData.uid] };
         });
-        setUserMap(userDetailsMap);
+
         setPosts(postList);
       };
+
       await fetchPosts();
+
       const fetchComments = async () => {
         const commentsCollection = collection(db, "comments");
         const commentsSnapshot = await getDocs(commentsCollection);
@@ -80,7 +96,11 @@ function App() {
       };
 
       await fetchComments();
+
+      // Fetch all users after fetching posts and comments
+      await fetchAllUsers();
     };
+
     fetchData();
   }, []);
 
@@ -126,7 +146,6 @@ function App() {
                       }
                     />
                   )}
-
                   <Route path="/home" element={<Feed posts={posts} />} />
                   <Route path="/" element={<Feed posts={posts} />} />
                 </Routes>
