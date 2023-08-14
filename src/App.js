@@ -131,11 +131,23 @@ function App() {
                   )}
                   <Route
                     path="/home"
-                    element={<Feed posts={posts} userMap={userMap} />}
+                    element={
+                      <Feed
+                        posts={posts}
+                        userMap={userMap}
+                        currentUser={currentUser}
+                      />
+                    }
                   />
                   <Route
                     path="/"
-                    element={<Feed posts={posts} userMap={userMap} />}
+                    element={
+                      <Feed
+                        posts={posts}
+                        userMap={userMap}
+                        currentUser={currentUser}
+                      />
+                    }
                   />
                 </Routes>
               </div>

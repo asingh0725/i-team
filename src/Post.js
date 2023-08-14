@@ -1,4 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import {
+  doc,
+  deleteDoc,
+  collection,
+  where,
+  query,
+  getDocs,
+} from "@firebase/firestore";
+import { db } from "./firebase";
 import {
   Flex,
   useTheme,
@@ -13,9 +22,16 @@ import { FaLocationDot } from "react-icons/fa6";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
-export function Post({ post, handleDetails, showButton, userProfileImage }) {
+export function Post({
+  post,
+  handleDetails,
+  showButton,
+  userProfileImage,
+  currentUser,
+}) {
   const { tokens } = useTheme();
   const profileImageSrc = userProfileImage || "./img/sample_user.png";
+  const [promptConfirmDelete, setPromptOnConfirmDelete] = useState(false);
 
   if (!post) {
     return <div>Error: Post data is not available.</div>;
@@ -30,6 +46,36 @@ export function Post({ post, handleDetails, showButton, userProfileImage }) {
     cursor: "pointer",
     backgroundColor: "#FFD700",
     borderRadius: "50%",
+  };
+
+  const handleDeletePostConfirmation = () => {
+    setPromptOnConfirmDelete(true);
+  };
+
+  const deletePost = async (postId) => {
+    const postRef = doc(db, "posts", postId);
+    await deleteDoc(postRef);
+  };
+
+  const deletePostComments = async (postId) => {
+    console.log("Attempting to delete comments for post:", postId);
+    const commentsRef = collection(db, "comments");
+    const queryRef = query(commentsRef, where("postId", "==", postId));
+    console.log("comment Ref", commentsRef);
+    const querySnapshot = await getDocs(queryRef);
+    querySnapshot.forEach(async (documentSnapshot) => {
+      await deleteDoc(documentSnapshot.ref);
+    });
+    console.log("Comments deleted successfully for post:", postId);
+  };
+
+  const handleDeletePost = async (postId) => {
+    try {
+      await deletePost(postId);
+      await deletePostComments(postId);
+    } catch (error) {
+      console.error("Error deleting post:", error);
+    }
   };
 
   return (
@@ -66,10 +112,37 @@ export function Post({ post, handleDetails, showButton, userProfileImage }) {
             >
               {post.location}
             </Text>
-            {showButton && (
-              <Button variation="warning" onClick={handleDetails}>
-                Comments
-              </Button>
+            {showButton && currentUser.uid === post.uid && (
+              <>
+                <Flex direction={"row"} justifyContent={"flex-end"}>
+                  {!promptConfirmDelete ? (
+                    <Button
+                      variation="destructive"
+                      onClick={handleDeletePostConfirmation}
+                    >
+                      Delete Post
+                    </Button>
+                  ) : (
+                    <>
+                      <Button
+                        variation="primary"
+                        onClick={() => {
+                          handleDeletePost(post.id);
+                          setPromptOnConfirmDelete(false);
+                        }}
+                      >
+                        Confirm Delete
+                      </Button>
+                      <Button
+                        variation="warning"
+                        onClick={() => setPromptOnConfirmDelete(false)}
+                      >
+                        Cancel
+                      </Button>
+                    </>
+                  )}
+                </Flex>
+              </>
             )}
           </Flex>
           <Carousel
@@ -132,6 +205,13 @@ export function Post({ post, handleDetails, showButton, userProfileImage }) {
           >
             {post.caption}
           </Text>
+          {showButton && (
+            <Flex justifyContent={"flex-end"}>
+              <Button backgroundColor={"gold"} onClick={handleDetails}>
+                Comments
+              </Button>
+            </Flex>
+          )}
         </Flex>
       </Flex>
     </Card>

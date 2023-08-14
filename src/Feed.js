@@ -13,6 +13,7 @@ import { Post } from "./Post";
 export function Feed(props) {
   const posts = props.posts;
   const userMap = props.userMap;
+  const currentUser = props.currentUser;
   const sortedPosts = [...posts].sort((a, b) => b.timestamp - a.timestamp);
   const navigate = useNavigate();
   const { tokens } = useTheme();
@@ -84,6 +85,7 @@ export function Feed(props) {
                   handleDetails={handleDetails}
                   showButton={true}
                   userProfileImage={userMap[post.uid]?.profileImage}
+                  currentUser={currentUser}
                 />
               </View>
             </Flex>
