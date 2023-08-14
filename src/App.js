@@ -62,12 +62,19 @@ function App() {
 
       snapshot.docs.forEach((doc) => {
         const commentData = doc.data();
-        if (!commentsData[commentData.postId]) {
-          commentsData[commentData.postId] = [];
-        }
-        commentsData[commentData.postId].push(commentData);
-      });
+        const commentWithId = {
+          ...commentData,
+          id: doc.id, // Adding the comment's Firestore ID
+        };
 
+        if (!commentsData[commentWithId.postId]) {
+          commentsData[commentWithId.postId] = [];
+        }
+        commentsData[commentWithId.postId].push(commentWithId);
+      });
+      for (const postId in commentsData) {
+        commentsData[postId].sort((a, b) => b.timestamp - a.timestamp); // Assuming "timestamp" exists and you want newest comments at the top
+      }
       setComments(commentsData);
     });
 
