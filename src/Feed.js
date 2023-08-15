@@ -1,21 +1,43 @@
-import React, { useState } from "react";
-import { Flex, useTheme, Pagination, View } from "@aws-amplify/ui-react";
+import React, { useState, useEffect } from "react";
+import {
+  Flex,
+  useTheme,
+  Pagination,
+  View,
+  Loader,
+} from "@aws-amplify/ui-react";
 import { useNavigate } from "react-router-dom";
 import "@aws-amplify/ui-react/styles.css";
 import { Post } from "./Post";
 
 export function Feed(props) {
   const posts = props.posts;
+  const userMap = props.userMap;
+  const currentUser = props.currentUser;
+  const sortedPosts = [...posts].sort((a, b) => b.timestamp - a.timestamp);
   const navigate = useNavigate();
   const { tokens } = useTheme();
-  const [currentPage, setCurrentPage] = useState(1);
+
+  // Initialize currentPage with value from localStorage or default to 1
+  const [currentPage, setCurrentPage] = useState(
+    Number(localStorage.getItem("currentPage")) || 1
+  );
+
+  useEffect(() => {
+    // Save currentPage to localStorage whenever it changes
+    localStorage.setItem("currentPage", currentPage);
+  }, [currentPage]);
 
   const postsPerPage = 3;
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
 
   const totalPages = Math.ceil(posts.length / postsPerPage);
+
+  if (!posts || !userMap) {
+    return <Loader variation="linear" />;
+  }
 
   return (
     <Flex
@@ -62,6 +84,8 @@ export function Feed(props) {
                   post={post}
                   handleDetails={handleDetails}
                   showButton={true}
+                  userProfileImage={userMap[post.uid]?.profileImage}
+                  currentUser={currentUser}
                 />
               </View>
             </Flex>
