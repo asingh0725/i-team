@@ -112,38 +112,6 @@ export function Post({
             >
               {post.location}
             </Text>
-            {showButton && currentUser.uid === post.uid && (
-              <>
-                <Flex direction={"row"} justifyContent={"flex-end"}>
-                  {!promptConfirmDelete ? (
-                    <Button
-                      variation="destructive"
-                      onClick={handleDeletePostConfirmation}
-                    >
-                      Delete Post
-                    </Button>
-                  ) : (
-                    <>
-                      <Button
-                        variation="primary"
-                        onClick={() => {
-                          handleDeletePost(post.id);
-                          setPromptOnConfirmDelete(false);
-                        }}
-                      >
-                        Confirm Delete
-                      </Button>
-                      <Button
-                        variation="warning"
-                        onClick={() => setPromptOnConfirmDelete(false)}
-                      >
-                        Cancel
-                      </Button>
-                    </>
-                  )}
-                </Flex>
-              </>
-            )}
           </Flex>
           <Carousel
             width="100%"
@@ -210,6 +178,38 @@ export function Post({
               <Button backgroundColor={"gold"} onClick={handleDetails}>
                 Comments
               </Button>
+              {showButton && currentUser.uid === post.uid && (
+                <>
+                  <Flex direction={"row"} justifyContent={"flex-end"}>
+                    {!promptConfirmDelete ? (
+                      <Button
+                        variation="destructive"
+                        onClick={handleDeletePostConfirmation}
+                      >
+                        Delete Post
+                      </Button>
+                    ) : (
+                      <>
+                        <Button
+                          variation="primary"
+                          onClick={() => {
+                            handleDeletePost(post.id);
+                            setPromptOnConfirmDelete(false);
+                          }}
+                        >
+                          Confirm Delete
+                        </Button>
+                        <Button
+                          variation="warning"
+                          onClick={() => setPromptOnConfirmDelete(false)}
+                        >
+                          Cancel
+                        </Button>
+                      </>
+                    )}
+                  </Flex>
+                </>
+              )}
             </Flex>
           )}
         </Flex>

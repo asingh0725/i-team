@@ -5,14 +5,16 @@ import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
 } from "firebase/auth";
-import { Flex, Text } from "@aws-amplify/ui-react";
+import { Flex, Loader, Text } from "@aws-amplify/ui-react";
 
 function Register() {
   const navigate = useNavigate();
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
+  const [stopGap, setStopGap] = useState(false);
 
   const handleSubmit = async (e) => {
+    setStopGap(true);
     e.preventDefault();
 
     // Check if email address ends with "@uw.edu"
@@ -28,18 +30,23 @@ function Register() {
         registerPassword
       );
       const newUser = userCredential.user;
-
+      auth.signOut();
       if (newUser) {
         await sendEmailVerification(newUser);
         alert(
           "Verification email sent. Please check your inbox and then login"
         );
+        auth.signOut();
         navigate("/login");
       }
     } catch (error) {
       alert(error.message);
     }
   };
+
+  if (stopGap) {
+    return <Loader variation="linear">Loading ....</Loader>;
+  }
 
   return (
     <Flex

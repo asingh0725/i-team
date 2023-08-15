@@ -76,6 +76,7 @@ const NavBarLoggedIn = () => {
   const [userImgURL, setUserImgURL] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
+  const [getProgress, setProgress] = useState(0);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -115,7 +116,8 @@ const NavBarLoggedIn = () => {
     uploadTask.on(
       "state_changed",
       (snapshot) => {
-        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setProgress(progress);
         console.log("Upload is " + progress + "% done");
       },
       (error) => {
@@ -139,6 +141,7 @@ const NavBarLoggedIn = () => {
         }
       }
     );
+    setProgress(0);
   };
 
   return (
@@ -259,6 +262,10 @@ const NavBarLoggedIn = () => {
                   Upload/Update Image
                 </span>
               </>
+            ) : getProgress > 0 && getProgress < 100 ? (
+              <Text color="#fff" borderRadius={"50%"}>
+                {`Uploading: ${Math.round(getProgress)}%`}
+              </Text>
             ) : (
               <Image
                 borderRadius={"50%"}
