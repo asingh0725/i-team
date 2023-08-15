@@ -38,11 +38,11 @@ function App() {
     const postsCollection = collection(db, "posts");
     const unsubscribePosts = onSnapshot(postsCollection, (snapshot) => {
       const updatedPosts = snapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      setPosts(updatedPosts);
-    });
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setPosts(updatedPosts);
+      });
 
     const usersCollection = collection(db, "users");
     const unsubscribeUsers = onSnapshot(usersCollection, (snapshot) => {
@@ -72,7 +72,7 @@ function App() {
         }
         commentsData[commentWithId.postId].push(commentWithId);
       });
-
+      
       for (const postId in commentsData) {
         const currentTime = Date.now();
         const oneDayInMillis = 24 * 60 * 60 * 1000;
