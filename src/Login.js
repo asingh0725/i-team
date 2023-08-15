@@ -131,6 +131,17 @@ const Login = () => {
             Don't have an account? Register here.
           </Link>
         </Text>
+        <Text color="#ffffff">
+          <Link
+            to="/reset-password"
+            style={{
+              color: "#FFFFFF",
+              textDecoration: "underline",
+            }}
+          >
+            Forgot your password?
+          </Link>
+        </Text>
       </Flex>
     </Flex>
   );
