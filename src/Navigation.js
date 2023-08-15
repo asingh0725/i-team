@@ -1,21 +1,14 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import {
-  Flex,
-  Text,
-  Button,
-  useTheme,
-  Image,
-  Link as AmplifyLink,
-} from "@aws-amplify/ui-react";
+import { Flex, Text, Button, useTheme, Image } from "@aws-amplify/ui-react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
 import { ref, uploadBytesResumable, getDownloadURL } from "@firebase/storage";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 import { auth, storage, db } from "./firebase";
 import { signOut } from "firebase/auth";
+import { FaCirclePlus } from "react-icons/fa6";
 
 const NavBarNotLoggedIn = () => {
-  // Use the AuthContext to get the current user
   const { tokens } = useTheme();
 
   return (
@@ -25,7 +18,7 @@ const NavBarNotLoggedIn = () => {
       alignItems="center"
       padding="1.25rem"
       backgroundColor="#c0c0c0"
-      height={["2.125rem", "3.125rem", "4.125rem"]} // the responsiveness for the mobile, tablet, and desktop
+      height={["2.125rem", "3.125rem", "4.125rem"]}
     >
       <Flex alignItems="center">
         <Link
@@ -82,12 +75,14 @@ const NavBarLoggedIn = () => {
   const { user, isLoggedIn, forceUpdate } = useContext(AuthContext);
   const [userImgURL, setUserImgURL] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+  const [getProgress, setProgress] = useState(0);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      navigate("/home"); // Redirect to home page after logging out
+      navigate("/home");
     } catch (error) {
       console.error("Error signing out: ", error.message);
     }
@@ -111,32 +106,42 @@ const NavBarLoggedIn = () => {
         setIsLoading(false);
       }
     };
-
     fetchUserImage();
   }, [user]);
   const handleFileChange = async (event) => {
-    const file = event.target.files;
-    console.log("File = ", file[0]);
-    const storageRef = ref(storage, "images/" + file[0].name);
-    const uploadTask = uploadBytesResumable(storageRef, file[0]);
+    const file = event.target.files[0];
+    const storageRef = ref(storage, "images/" + file.name);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
     uploadTask.on(
       "state_changed",
       (snapshot) => {
-        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setProgress(progress);
         console.log("Upload is " + progress + "% done");
       },
       (error) => {
         console.error("Upload failed:", error);
       },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+      async () => {
+        try {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
           console.log("File available at", downloadURL);
-          setUserImgURL(downloadURL); // Update state here
+          setUserImgURL(downloadURL); // Update local state here
+
           const userRef = doc(db, "users", user.uid);
-          setDoc(userRef, { profileImage: downloadURL }, { merge: true });
-        });
+          await setDoc(userRef, { profileImage: downloadURL }, { merge: true });
+
+          //window.location.reload();
+        } catch (error) {
+          console.error(
+            "Error getting download URL or updating Firestore:",
+            error
+          );
+        }
       }
     );
+    setProgress(0);
   };
 
   return (
@@ -227,25 +232,54 @@ const NavBarLoggedIn = () => {
             accept="image/*"
           />
           <Button
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
             backgroundColor={tokens.colors.transparent}
             borderRadius={"50%"}
             height={["2.125rem", "3.125rem", "4rem"]}
             width={["2.125rem", "3.125rem", "4rem"]}
             onClick={handleUploadClick}
             padding={"0.3rem"}
+            position="relative" // to position the overlay and icon
           >
-            <Image
-              borderRadius={"50%"}
-              height={["100%"]}
-              width={["100%"]}
-              src={
-                isLoading
-                  ? "../img/sample_user.png"
-                  : userImgURL
-                  ? userImgURL
-                  : "../img/sample_user.png"
-              }
-            />
+            {isHovered ? (
+              <>
+                <FaCirclePlus size={"inherit"} color="white" />
+                <span
+                  style={{
+                    position: "absolute",
+                    top: "40px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    backgroundColor: "#000",
+                    color: "#fff",
+                    padding: "2px 5px",
+                    borderRadius: "5px",
+                    fontSize: "12px",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  Upload/Update Image
+                </span>
+              </>
+            ) : getProgress > 0 && getProgress < 100 ? (
+              <Text color="#fff" borderRadius={"50%"}>
+                {`Uploading: ${Math.round(getProgress)}%`}
+              </Text>
+            ) : (
+              <Image
+                borderRadius={"50%"}
+                height={["100%"]}
+                width={["100%"]}
+                src={
+                  isLoading
+                    ? "img/sample_user.png"
+                    : userImgURL
+                    ? userImgURL
+                    : "img/sample_user.png"
+                }
+              />
+            )}
           </Button>
           <Button
             variation="warning"
