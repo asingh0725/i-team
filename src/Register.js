@@ -5,7 +5,7 @@ import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
 } from "firebase/auth";
-import { Flex, Text } from "@aws-amplify/ui-react";
+import { Flex, Text, Image } from "@aws-amplify/ui-react";
 
 function Register() {
   const navigate = useNavigate();
@@ -57,6 +57,12 @@ function Register() {
         width="100%"
         padding="1.25rem"
       >
+      <Image
+        src="../img/uw_logo.png"
+        alt="uw_logo"
+        height={["2.125rem", "3.125rem", "4.125rem"]}
+        width={["2.125rem", "3.125rem", "4.125rem"]}
+        />
         <h1 style={{ color: "#ffffff" }}>Sign Up</h1>
         <form onSubmit={handleSubmit}>
           <Flex direction="column" gap="1rem">

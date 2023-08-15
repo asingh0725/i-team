@@ -19,7 +19,7 @@ const Home = () => {
         width="100%"
       >
         <Image
-          src="img/husky.png"
+          src="../img/husky.png"
           alt="Husky"
           maxWidth="100%"
           height="auto"
