@@ -20,6 +20,7 @@ import {
   TextAreaField,
   Text,
   Autocomplete,
+  View,
 } from "@aws-amplify/ui-react";
 import { FaLocationDot } from "react-icons/fa6";
 import "@aws-amplify/ui-react/styles.css";
@@ -207,28 +208,48 @@ function CreatePost() {
           alignItems={"center"}
           width={"100%"}
         >
-          <FaLocationDot size={24}></FaLocationDot>
-          <Autocomplete
-            fontSize={["1.25rem", "1.5rem", "1.75rem"]}
-            style={{ borderWidth: 0 }}
-            label="Locations across UW campus"
-            backgroundColor={tokens.colors.white}
-            borderColor={"white"}
+          <View
+            padding={"0.5rem"}
+            backgroundColor={"white"}
             borderRadius={tokens.radii.large}
-            placeholder="Select Pick-up location"
-            onChange={(e) => {
-              setLocation(e.target.value);
-              setValue(e.target.value);
-              setErrors((prevErrors) => ({
-                ...prevErrors,
-                location: e.target.value ? null : "Location is required",
-              }));
-            }}
-            options={locations}
-            value={value}
-            onClear={onClear}
-            onSelect={onSelect}
-          ></Autocomplete>
+          >
+            <Flex
+              direction={"row"}
+              justifyContent={"center"}
+              alignContent="center"
+              alignItems={"center"}
+              width={"100%"}
+              gap={"0rem"}
+            >
+              <FaLocationDot
+                size={24}
+                className="faLocationDot"
+              ></FaLocationDot>
+              <Autocomplete
+                marginLeft={"0%"}
+                fontSize={["1.25rem", "1.5rem", "1.75rem"]}
+                hasSearchIcon={false}
+                style={{ borderWidth: 0 }}
+                variation="default"
+                label="Locations across UW campus"
+                borderColor={"white"}
+                borderRadius={tokens.radii.large}
+                placeholder="Select Pick-up location"
+                onChange={(e) => {
+                  setLocation(e.target.value);
+                  setValue(e.target.value);
+                  setErrors((prevErrors) => ({
+                    ...prevErrors,
+                    location: e.target.value ? null : "Location is required",
+                  }));
+                }}
+                options={locations}
+                value={value}
+                onClear={onClear}
+                onSelect={onSelect}
+              ></Autocomplete>
+            </Flex>
+          </View>
           {errors.location && (
             <Text
               variation="error"
@@ -283,26 +304,30 @@ function CreatePost() {
             )}
           </Flex>
         </Card>
-        <TextAreaField
-          backgroundColor={tokens.colors.white}
-          borderColor={"white"}
-          style={{ borderWidth: 0 }}
-          descriptiveText=""
-          outline
-          placeholder="write a caption.."
-          label=""
-          errorMessage=""
+        <View
+          padding={"0.5rem"}
+          backgroundColor={"white"}
           borderRadius={tokens.radii.large}
-          isRequired={true}
-          onChange={(e) => {
-            setCaption(e.target.value);
-            setErrors((prevErrors) => ({
-              ...prevErrors,
-              caption: e.target.value ? null : "Caption is required",
-            }));
-          }}
           width={"100%"}
-        />
+        >
+          <TextAreaField
+            descriptiveText=""
+            outline
+            placeholder="write a caption.."
+            label=""
+            errorMessage=""
+            borderRadius={tokens.radii.large}
+            isRequired={true}
+            onChange={(e) => {
+              setCaption(e.target.value);
+              setErrors((prevErrors) => ({
+                ...prevErrors,
+                caption: e.target.value ? null : "Caption is required",
+              }));
+            }}
+            width={"100%"}
+          />
+        </View>
         {errors.caption && (
           <Text
             variation="error"
