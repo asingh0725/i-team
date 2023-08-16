@@ -30,7 +30,7 @@ const NavBarNotLoggedIn = () => {
           }}
         >
           <Image
-            src="img/header_logo.png"
+            src="../img/header_logo.png"
             alt="Logo"
             style={{ marginRight: "0.625rem" }}
             height={["2.125rem", "3.125rem", "4.125rem"]}
@@ -163,7 +163,7 @@ const NavBarLoggedIn = () => {
           }}
         >
           <Image
-            src="img/header_logo.png"
+            src="../img/header_logo.png"
             alt="Logo"
             style={{ marginRight: "0.625rem" }}
             height={["2.125rem", "3.125rem", "4.125rem"]}

@@ -11,6 +11,7 @@ import About from "./About";
 import Home from "./Home";
 import Register from "./Register";
 import Login from "./Login";
+import ResetPassword from "./ResetPassword";
 import { Feed } from "./Feed";
 import { PostPage } from "./PostPage";
 import { AuthContext } from "./AuthContext";
@@ -102,6 +103,7 @@ function App() {
                 <Routes>
                   <Route path="/about" element={<About />} />
                   <Route path="/register" element={<Register />} />
+                  <Route path="/reset-password" element={<ResetPassword />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/home" element={<Home />} />
                   <Route path="/" element={<Home />} />
