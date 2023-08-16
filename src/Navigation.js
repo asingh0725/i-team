@@ -273,10 +273,10 @@ const NavBarLoggedIn = () => {
                 width={["100%"]}
                 src={
                   isLoading
-                    ? "img/sample_user.png"
+                    ? "../img/sample_user.png"
                     : userImgURL
                     ? userImgURL
-                    : "img/sample_user.png"
+                    : "../img/sample_user.png"
                 }
               />
             )}
