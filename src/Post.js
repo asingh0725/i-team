@@ -32,7 +32,14 @@ export function Post({
   const { tokens } = useTheme();
   const profileImageSrc = userProfileImage || "./img/sample_user.png";
   const [promptConfirmDelete, setPromptOnConfirmDelete] = useState(false);
+  //const [notShowPost, setNotShowPost] = useState(false);
+  let currentTime = Date.now();
+  let currentTimeInSeconds = currentTime / 1000;
+  const minute = 60;
 
+  if (currentTimeInSeconds - post.timestamp.seconds) {
+    return null;
+  }
   if (!post) {
     return <div>Error: Post data is not available.</div>;
   }
