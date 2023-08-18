@@ -1,4 +1,5 @@
-# i-team
+# Share-A-Bite
+
 ## Team Name 
 FS (stand for Food Security)
 
